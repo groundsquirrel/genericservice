@@ -1,6 +1,7 @@
+using GenericService.DAL.Services.Abstractions;
 using MongoDB.Driver;
 
-namespace GenericService.DAL.Services.Abstractions
+namespace GenericService.DAL.Services
 {
     /// <summary>
     /// The MongoDb context
