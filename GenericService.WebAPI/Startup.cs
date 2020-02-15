@@ -2,8 +2,6 @@ using GenericService.DAL.Services;
 using GenericService.DAL.Services.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,13 +26,10 @@ namespace GenericService.WebAPI
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            
+
             services
             .AddTransient<IMongoDbContext>(s => new MongoDbContext("mongodb://localhost:27017", "test"))
-               .AddTransient<IGenericRepository<BsonDocument, string>, BsonDocumentRepository>()
-               .AddTransient<IUnitOfWork, UnitOfWork>()
-               .AddTransient<Class1>()
-               .BuildServiceProvider();
+               .AddTransient<IUnitOfWork, UnitOfWork>();               
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,8 +71,8 @@ namespace GenericService.WebAPI
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    //spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }
