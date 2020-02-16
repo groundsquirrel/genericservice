@@ -22,29 +22,32 @@ namespace GenericService.WebAPI.Controllers
         [HttpGet]
         public ContentResult Get()
         {
-            var result = unitOfWork.Docs.Get();
-            return ConvertToJson(result);
+            var result = unitOfWork.Docs.Get().ToJson(writerSettings);
+            return Content(result);
         }
 
-        private ContentResult ConvertToJson(IEnumerable<BsonDocument> result)
+        public override ContentResult Content(string result)
         {
-            var finalResult = result.ToJson(writerSettings);
-            return Content(finalResult, "application/json");
+            return Content(result, "application/json");
         }
 
         // GET: api/Mongo/5e3d20279aa6ca09b88e95c4
         [HttpGet("{id}", Name = "Get")]
         public ContentResult Get(string id)
         {
-            return base.Content(
-                unitOfWork.Docs.FindById(id).ToJson(writerSettings), 
-                "application/json");
+            return Content(unitOfWork.Docs.FindById(id).ToJson(writerSettings));
         }
 
         // POST: api/Mongo
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] object value)
         {
+            if (ModelState.IsValid && value != null)
+            {
+                unitOfWork.Docs.Create(BsonDocument.Parse(value.ToString()));
+                return Ok(value);
+            }
+            return BadRequest(ModelState);
         }
 
         // PUT: api/Mongo/5
