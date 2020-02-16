@@ -1,4 +1,5 @@
-﻿using GenericService.DAL.Services.Abstractions;
+﻿using System.Collections.Generic;
+using GenericService.DAL.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
@@ -10,6 +11,7 @@ namespace GenericService.WebAPI.Controllers
     public class MongoController : ControllerBase
     {
         readonly IUnitOfWork unitOfWork;
+        JsonWriterSettings writerSettings = new JsonWriterSettings { OutputMode = JsonOutputMode.Strict };
 
         public MongoController(IUnitOfWork unitOfWork)
         {
@@ -21,15 +23,22 @@ namespace GenericService.WebAPI.Controllers
         public ContentResult Get()
         {
             var result = unitOfWork.Docs.Get();
-            var finalResult = result.ToJson(new JsonWriterSettings { OutputMode = JsonOutputMode.Strict });
+            return ConvertToJson(result);
+        }
+
+        private ContentResult ConvertToJson(IEnumerable<BsonDocument> result)
+        {
+            var finalResult = result.ToJson(writerSettings);
             return Content(finalResult, "application/json");
         }
 
-        // GET: api/Mongo/5
+        // GET: api/Mongo/5e3d20279aa6ca09b88e95c4
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public ContentResult Get(string id)
         {
-            return "value";
+            return base.Content(
+                unitOfWork.Docs.FindById(id).ToJson(writerSettings), 
+                "application/json");
         }
 
         // POST: api/Mongo
