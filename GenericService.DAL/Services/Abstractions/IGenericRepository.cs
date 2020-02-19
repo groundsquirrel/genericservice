@@ -4,17 +4,17 @@ using System.Linq.Expressions;
 
 namespace GenericService.DAL.Services.Abstractions
 {
-    public interface IGenericRepository<TEntity, TKey> 
+    public interface IGenericRepository<TEntity, TKey, TResult> 
         where TEntity : class
+        where TResult : class
     {
-        void Create(TEntity item);
-        TEntity FindById(TKey id);
-        IEnumerable<TEntity> Get();
-        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter);
-        IEnumerable<TEntity> Get(TEntity filter);
-        void Remove(Expression<Func<TEntity, bool>> item);
-        void Remove(TEntity item);
+        void Create(TResult item);
+        TResult FindById(TKey id);
+        IEnumerable<TResult> Get();
+        IEnumerable<TResult> Get(TEntity filter);
+        void Remove(TKey item);
         void Update(Expression<Func<TEntity, bool>> filter, TEntity item);
         void Update(TEntity filter, TEntity item);
+        void Update(TKey filter, TResult item);
     }
 }

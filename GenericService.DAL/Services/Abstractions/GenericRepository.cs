@@ -6,7 +6,9 @@ using MongoDB.Driver;
 
 namespace GenericService.DAL.Services.Abstractions
 {
-    public abstract class GenericMongoRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey> where TEntity : class
+    public abstract class GenericMongoRepository<TEntity, TKey, TResult> : IGenericRepository<TEntity, TKey, TResult> 
+    where TEntity : class
+    where TResult : class
     {
         
         protected IMongoCollection<TEntity> collection;
@@ -16,21 +18,14 @@ namespace GenericService.DAL.Services.Abstractions
             collection = mongoDbContext.GetCollection<TEntity>(collectionName);
         }
 
-        public abstract IEnumerable<TEntity> Get();
+        public abstract IEnumerable<TResult> Get();
 
-        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter)
-        {
-            return collection.Find(filter).ToList();
-        }
-
-        public abstract IEnumerable<TEntity> Get(TEntity filter);
+        public abstract IEnumerable<TResult> Get(TEntity filter);
         
-        public abstract TEntity FindById(TKey id);
+        public abstract TResult FindById(TKey id);
 
-        public void Create(TEntity item)
-        {
-            collection.InsertOne(item);
-        }
+        public abstract void Create(TResult item);
+        
         public void Update(Expression<Func<TEntity, bool>> filter, TEntity item)
         {
             collection.ReplaceOne((FilterDefinition<TEntity>)filter, item);
@@ -38,11 +33,8 @@ namespace GenericService.DAL.Services.Abstractions
 
         public abstract void Update(TEntity filter, TEntity item);
 
-        public void Remove(Expression<Func<TEntity, bool>> item)
-        {
-            collection.DeleteOne(item);
-        }
+        public abstract void Update(TKey filter, TResult item);
 
-        public abstract void Remove(TEntity item);
+        public abstract void Remove(TKey item);
     }
 }

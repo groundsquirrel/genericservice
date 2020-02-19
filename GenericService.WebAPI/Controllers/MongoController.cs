@@ -26,15 +26,15 @@ namespace GenericService.WebAPI.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            var result = unitOfWork.Docs.Get().ToJson(writerSettings);
-            return new JsonResult(JArray.Parse(result));
+            var result = unitOfWork.Docs.Get();
+            return new JsonResult(result);
         }
         
         // GET: api/Mongo/5e3d20279aa6ca09b88e95c4
         [HttpGet("{id}", Name = "Get")]
         public JsonResult Get(string id)
         {
-            return new JsonResult(JObject.Parse(unitOfWork.Docs.FindById(id).ToJson(writerSettings)));
+            return new JsonResult(unitOfWork.Docs.FindById(id));
         }
 
         // POST: api/Mongo
@@ -43,7 +43,7 @@ namespace GenericService.WebAPI.Controllers
         {
             if (ModelState.IsValid && value != null)
             {
-                unitOfWork.Docs.Create(BsonDocument.Parse(value.ToString()));
+                unitOfWork.Docs.Create(value);
                 return Ok(value);
             }
             return BadRequest(ModelState);
@@ -53,10 +53,9 @@ namespace GenericService.WebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] JObject value)
         {
-            BsonDocument bson = BsonDocument.Parse(value.ToString(Formatting.None));
             if (ModelState.IsValid && !string.IsNullOrEmpty(id))// && BsonDocument.TryParse(jsonString, out BsonDocument inputValue))
             {
-                unitOfWork.Docs.Update(unitOfWork.Docs.FindById(id), bson);
+                unitOfWork.Docs.Update(id, value);
                 return Ok(value);
             }
             return BadRequest(ModelState);
@@ -64,27 +63,8 @@ namespace GenericService.WebAPI.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
-        }
-    }
-
-    class ObjectIdConverter : JsonConverter
-    {
-        public override void WriteJson(Newtonsoft.Json.JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            serializer.Serialize(writer, value.ToString());
-
-        }
-
-        public override object ReadJson(Newtonsoft.Json.JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool CanConvert(Type objectType)
-        {
-            return typeof(ObjectId).IsAssignableFrom(objectType);
         }
     }
 }
