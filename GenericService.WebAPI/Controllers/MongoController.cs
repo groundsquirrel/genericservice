@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GenericService.DAL.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
@@ -52,9 +53,10 @@ namespace GenericService.WebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] JObject value)
         {
-            if (ModelState.IsValid && !string.IsNullOrEmpty(id))
+            BsonDocument bson = BsonDocument.Parse(value.ToString(Formatting.None));
+            if (ModelState.IsValid && !string.IsNullOrEmpty(id))// && BsonDocument.TryParse(jsonString, out BsonDocument inputValue))
             {
-                //unitOfWork.Docs.Update(unitOfWork.Docs.FindById(id), BsonDocument.(value));
+                unitOfWork.Docs.Update(unitOfWork.Docs.FindById(id), bson);
                 return Ok(value);
             }
             return BadRequest(ModelState);
@@ -64,6 +66,25 @@ namespace GenericService.WebAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+    }
+
+    class ObjectIdConverter : JsonConverter
+    {
+        public override void WriteJson(Newtonsoft.Json.JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            serializer.Serialize(writer, value.ToString());
+
+        }
+
+        public override object ReadJson(Newtonsoft.Json.JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool CanConvert(Type objectType)
+        {
+            return typeof(ObjectId).IsAssignableFrom(objectType);
         }
     }
 }
