@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using GenericService.DAL.Services.Abstractions;
+﻿using GenericService.DAL.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Bson.IO;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace GenericService.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MongoController : ControllerBase
+    public class GenericController : ControllerBase
     {
         readonly IUnitOfWork unitOfWork;
-        JsonWriterSettings writerSettings = new JsonWriterSettings { OutputMode = JsonOutputMode.Strict };
 
-        public MongoController(IUnitOfWork unitOfWork)
+        public GenericController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
-        // GET: api/Mongo
+        // GET: api/Generic
         [HttpGet]
         public JsonResult Get()
         {
@@ -30,14 +23,14 @@ namespace GenericService.WebAPI.Controllers
             return new JsonResult(result);
         }
         
-        // GET: api/Mongo/5e3d20279aa6ca09b88e95c4
+        // GET: api/Generic/5e3d20279aa6ca09b88e95c4
         [HttpGet("{id}", Name = "Get")]
         public JsonResult Get(string id)
         {
             return new JsonResult(unitOfWork.Docs.FindById(id));
         }
 
-        // POST: api/Mongo
+        // POST: api/Generic
         [HttpPost]
         public IActionResult Post([FromBody] JObject value)
         {
@@ -49,7 +42,7 @@ namespace GenericService.WebAPI.Controllers
             return BadRequest(ModelState);
         }
 
-        // PUT: api/Mongo/5
+        // PUT: api/Generic/5e3d20279aa6ca09b88e95c4
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] JObject value)
         {
@@ -61,10 +54,14 @@ namespace GenericService.WebAPI.Controllers
             return BadRequest(ModelState);
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Generic/5e3d20279aa6ca09b88e95c4
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public IActionResult Delete(string id)
         {
+            if (string.IsNullOrEmpty(id)) return NotFound(id);
+
+            unitOfWork.Docs.Remove(id);
+            return Ok();
         }
     }
 }

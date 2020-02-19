@@ -22,7 +22,9 @@ namespace GenericService.DAL.Services
 
         public override void Create(JObject item)
         {
-            collection.InsertOne(BsonDocument.Parse(item.ToString()));
+            BsonDocument document = BsonDocument.Parse(item.ToString());
+            document.Add(new BsonElement("_id", ObjectId.GenerateNewId()));
+            collection.InsertOne(document);
         }
 
         public override IEnumerable<JObject> Get()
