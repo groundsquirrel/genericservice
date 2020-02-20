@@ -24,14 +24,12 @@ namespace GenericService.DAL.Services.Abstractions
         
         public abstract TResult FindById(TKey id);
 
-        public abstract void Create(TResult item);
+        public abstract TResult Create(TResult item);
         
         public void Update(Expression<Func<TEntity, bool>> filter, TEntity item)
         {
             collection.ReplaceOne((FilterDefinition<TEntity>)filter, item);
         }
-
-        public abstract void Update(TEntity filter, TEntity item);
 
         public abstract void Update(TKey filter, TResult item);
 

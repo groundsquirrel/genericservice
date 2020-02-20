@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
@@ -20,16 +18,20 @@ namespace GenericService.DAL.Services
         {
         }
 
-        public override void Create(JObject item)
+        public override JObject Create(JObject item)
         {
-            BsonDocument document = BsonDocument.Parse(item.ToString());
-            document.Add(new BsonElement("_id", ObjectId.GenerateNewId()));
+            BsonDocument document = BsonDocument.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(item));
+            if (!document.Any(a => a.Name == "_id"))
+                document.InsertAt(0, new BsonElement("_id", ObjectId.GenerateNewId()));
+
             collection.InsertOne(document);
+            
+            return JObject.Parse(document.ToJson(writerSettings));
         }
 
         public override IEnumerable<JObject> Get()
         {
-            return collection.Find(Builders<BsonDocument>.Filter.Empty).ToEnumerable().Select(s => JObject.Parse(s.ToJson(writerSettings)));
+            return this.Get(new BsonDocument());
         }
 
         public override IEnumerable<JObject> Get(BsonDocument filter)
@@ -39,25 +41,32 @@ namespace GenericService.DAL.Services
 
         public override JObject FindById(string id)
         {
-            return JObject.Parse(collection.Find(new BsonDocument{ {"_id", ObjectId.Parse(id) }}).FirstOrDefault().ToJson(writerSettings));
+            if (GetElementById(id) is BsonDocument document)
+                return JObject.Parse(document.ToJson(writerSettings));
+            else
+                return null;
         }
 
         public override void Remove(string item)
         {
-            var source = collection.Find(new BsonDocument{ {"_id", ObjectId.Parse(item) }}).FirstOrDefault();
-            collection.DeleteOne(source);
-        }
-
-        public override void Update(BsonDocument filter, BsonDocument item)
-        {
-            collection.ReplaceOne(filter, item);
+            if (GetElementById(item) is BsonDocument document)
+                collection.DeleteOne(document);
         }
 
         public override void Update(string filter, JObject item)
         {
-            var source = collection.Find(new BsonDocument{ {"_id", ObjectId.Parse(filter) }}).FirstOrDefault();
-            BsonDocument dest = BsonDocument.Parse(item.ToString(Formatting.None));
-            collection.ReplaceOne(source, dest);
+            if (GetElementById(filter) is BsonDocument source)
+            {
+                BsonDocument dest = BsonDocument.Parse(item.ToString(Formatting.None));
+                collection.ReplaceOne(source, dest);
+            }
+        }
+
+        private BsonDocument GetElementById(string item)
+        {
+            return (ObjectId.TryParse(item, out ObjectId objectId)) ? 
+                collection.Find(new BsonDocument { { "_id", objectId } }).FirstOrDefault() :
+                null;
         }
     }
 }

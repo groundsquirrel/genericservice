@@ -17,7 +17,7 @@ namespace GenericService.WebAPI.Controllers
 
         // GET: api/Generic
         [HttpGet]
-        public JsonResult Get()
+        public IActionResult Get()
         {
             var result = unitOfWork.Docs.Get();
             return new JsonResult(result);
@@ -25,9 +25,11 @@ namespace GenericService.WebAPI.Controllers
         
         // GET: api/Generic/5e3d20279aa6ca09b88e95c4
         [HttpGet("{id}", Name = "Get")]
-        public JsonResult Get(string id)
+        public IActionResult Get(string id)
         {
-            return new JsonResult(unitOfWork.Docs.FindById(id));
+            JObject value = unitOfWork.Docs.FindById(id);
+            if (value == null) return NotFound();
+            return new JsonResult(value);
         }
 
         // POST: api/Generic
@@ -36,8 +38,7 @@ namespace GenericService.WebAPI.Controllers
         {
             if (ModelState.IsValid && value != null)
             {
-                unitOfWork.Docs.Create(value);
-                return Ok(value);
+                return Ok(unitOfWork.Docs.Create(value));
             }
             return BadRequest(ModelState);
         }
