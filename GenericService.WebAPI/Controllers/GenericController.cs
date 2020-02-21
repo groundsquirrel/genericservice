@@ -47,7 +47,7 @@ namespace GenericService.WebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] JObject value)
         {
-            if (ModelState.IsValid && !string.IsNullOrEmpty(id))// && BsonDocument.TryParse(jsonString, out BsonDocument inputValue))
+            if (ModelState.IsValid && !string.IsNullOrEmpty(id))
             {
                 unitOfWork.Docs.Update(id, value);
                 return Ok(value);

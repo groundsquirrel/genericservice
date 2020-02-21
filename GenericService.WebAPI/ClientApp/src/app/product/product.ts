@@ -1,7 +1,13 @@
 export class Product {
     constructor(
-        public id?: number,
+        public _id?: ObjectId,
         public name?: string,
         public company?: string,
         public price?: number) { }
+}
+
+export class ObjectId {
+    constructor(
+        public $oid?: string,
+        ) { }
 }

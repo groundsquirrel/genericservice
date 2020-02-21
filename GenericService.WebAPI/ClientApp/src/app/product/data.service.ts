@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Product } from './product';
+import { ObjectId } from './product';
  
 @Injectable()
 export class DataService {
@@ -15,13 +16,14 @@ export class DataService {
     }
  
     createProduct(product: Product) {
+        console.log(product);
         return this.http.post(this.url, product);
     }
     updateProduct(product: Product) {
-  
-        return this.http.put(this.url + '/' + product.id, product);
+        console.log(product);
+        return this.http.put(this.url + '/' + product._id.$oid, product);
     }
-    deleteProduct(id: number) {
-        return this.http.delete(this.url + '/' + id);
+    deleteProduct(id: ObjectId) {
+        return this.http.delete(this.url + '/' + id.$oid);
     }
 }

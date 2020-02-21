@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let p of products">
-            <ng-template [ngIf]="product?.id != p.id" [ngIfElse]="edit">
+            <ng-template [ngIf]="product?._id != p._id" [ngIfElse]="edit">
                 <td>{{p?.name}}</td>
                 <td>{{p?.company}}</td>
                 <td>{{p?.price}}</td>
@@ -37,7 +37,7 @@
         <input type="text" [(ngModel)]="product.company" class="form-control" />
     </td>
     <td>
-        <input type="text" [(ngModel)]="product.price" class="form-control" />
+        <input type="number" [(ngModel)]="product.price" class="form-control" />
     </td>
     <td>
         <input type="button" value="Сохранить" (click)="save()" class="btn btn-sm btn-success" />&nbsp;

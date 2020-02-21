@@ -25,7 +25,7 @@ export class ProductComponent implements OnInit {
     }
     // сохранение данных
     save() {
-        if (this.product.id == null) {
+        if (this.product._id == null) {
             this.dataService.createProduct(this.product)
                 .subscribe((data: Product) => this.products.push(data));
         } else {
@@ -42,7 +42,7 @@ export class ProductComponent implements OnInit {
         this.tableMode = true;
     }
     delete(p: Product) {
-        this.dataService.deleteProduct(p.id)
+        this.dataService.deleteProduct(p._id)
             .subscribe(data => this.loadProducts());
     }
     add() {
