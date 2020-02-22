@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { MatInputModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSortModule, MatPaginatorModule } from '@angular/material';
+import { MatInputModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSortModule, MatPaginatorModule, MatIconModule, MatCardModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -47,6 +47,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSortModule,
     MatTableModule,
     MatPaginatorModule, 
+    MatIconModule,
+    MatCardModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

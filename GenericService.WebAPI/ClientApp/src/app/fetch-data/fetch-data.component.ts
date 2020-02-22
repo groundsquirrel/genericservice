@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild, Inject, OnInit } from '@angular/core';
+import { Component, ViewChild, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 //import { MatButtonModule } from '@angular/material/button'; 
@@ -13,8 +13,7 @@ import { Product as Product } from './product';
   templateUrl: './fetch-data.component.html',
   providers: [DataService]
 })
-export class FetchDataComponent implements OnInit {
- 
+export class FetchDataComponent implements AfterViewInit {
   product: Product = new Product();   // изменяемый товар
   products: Product[];                // массив товаров
   tableMode: boolean = true;          // табличный режим
@@ -25,7 +24,7 @@ export class FetchDataComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -35,9 +34,11 @@ export class FetchDataComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-      this.loadProducts();    // загрузка данных при старте компонента  
+  ngAfterViewInit() {
+    console.info('ngAfterViewInit');
+    this.loadProducts();    // загрузка данных при старте компонента  
   }
+
   // получаем данные через сервис
   loadProducts() {
       this.dataService.getProducts()
@@ -46,6 +47,9 @@ export class FetchDataComponent implements OnInit {
             this.dataSource = new MatTableDataSource(data);
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;
+            // this.dataSource.sortingDataAccessor = ((item: any, header: string) => {
+            //   return item[header][0].data;
+            // });
           }, error => console.error(error));
   }
   // сохранение данных

@@ -10,7 +10,7 @@
 
 <div *ngIf="tableMode; else create">
   <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фильтр">
   </mat-form-field>
 
   <div class="mat-elevation-z8">
@@ -34,31 +34,49 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
   </div>
 </div>
 
+
 <!--шаблон для добавления-->
 <ng-template #create>
   <br/>
-  <div class="form-group">
-      <label>Модель</label>
-      <input type="text" [(ngModel)]="product.name" class="form-control" />
-  </div>
-  <div class="form-group">
-      <label>Производитель</label>
-      <input type="text" [(ngModel)]="product.company" class="form-control" />
-  </div>
-  <div class="form-group">
-      <label>Цена</label>
-      <input type="number" [(ngModel)]="product.price" class="form-control" />
-  </div>
-  <div>
-      <!-- <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />&nbsp;
-      <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />&nbsp; -->
-      <button mat-stroked-button color="primary" (click)="save()">Сохранить</button>&nbsp;
-      <button mat-stroked-button  (click)="cancel()">Отмена</button>
-  </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Добавление модели</mat-card-title>
+      <mat-card-subtitle>Добавьте модель телефона</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Модель</mat-label>
+        <input type="text" [(ngModel)]="product.name" matInput>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Производитель</mat-label>
+        <input type="text" [(ngModel)]="product.company" matInput>
+      </mat-form-field>
+      <!-- <div class="form-group">
+          <label>Цена</label>
+          <input type="number" [(ngModel)]="product.price" class="form-control" />
+      </div> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Цена</mat-label>
+        <input matInput type="number" class="price-right-align" [(ngModel)]="product.price">
+        <span matPrefix></span>
+        <span matSuffix>.00 &#8381;</span>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <div>
+          <!-- <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />&nbsp;
+          <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />&nbsp; -->
+          <button mat-stroked-button color="primary" (click)="save()">Сохранить</button>
+          <button mat-stroked-button  (click)="cancel()">Отмена</button>
+      </div>
+    </mat-card-actions>
+</mat-card>
 </ng-template>

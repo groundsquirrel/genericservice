@@ -15,11 +15,9 @@ export class DataService {
     }
  
     createProduct(product: Product) {
-        console.log(product);
         return this.http.post(this.url, product);
     }
     updateProduct(product: Product) {
-        console.log(product);
         return this.http.put(this.url + '/' + product._id.$oid, product);
     }
     deleteProduct(id: ObjectId) {
