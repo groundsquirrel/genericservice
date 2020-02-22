@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild, Inject, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ViewChild,  OnInit } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
-//import { MatButtonModule } from '@angular/material/button'; 
-import {MatCardModule} from '@angular/material/card';
 import { DataService } from './data.service';
 import { Product as Product } from './product';
  
@@ -13,13 +10,13 @@ import { Product as Product } from './product';
   templateUrl: './fetch-data.component.html',
   providers: [DataService]
 })
-export class FetchDataComponent implements AfterViewInit {
+export class FetchDataComponent implements OnInit {
+  
   product: Product = new Product();   // изменяемый товар
-  products: Product[];                // массив товаров
   tableMode: boolean = true;          // табличный режим
 
   displayedColumns: string[] = ['name', 'company', 'price'];
-  dataSource: MatTableDataSource<Product> = new MatTableDataSource();
+  dataSource: MatTableDataSource<Product>; // массив товаров
 
   constructor(private dataService: DataService) { }
 
@@ -34,22 +31,19 @@ export class FetchDataComponent implements AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
-    console.info('ngAfterViewInit');
+  ngOnInit(): void {
+    console.info('ngOnInit');
     this.loadProducts();    // загрузка данных при старте компонента  
   }
 
   // получаем данные через сервис
   loadProducts() {
+      console.info('loadProducts()');
       this.dataService.getProducts()
           .subscribe((data: Product[]) => {
-            this.products = data;
             this.dataSource = new MatTableDataSource(data);
-            this.dataSource.sort = this.sort;
+            this.dataSource.sort = this.sort; 
             this.dataSource.paginator = this.paginator;
-            // this.dataSource.sortingDataAccessor = ((item: any, header: string) => {
-            //   return item[header][0].data;
-            // });
           }, error => console.error(error));
   }
   // сохранение данных
@@ -57,12 +51,12 @@ export class FetchDataComponent implements AfterViewInit {
       if (this.product._id == null) {
           this.dataService.createProduct(this.product)
               .subscribe((data: Product) => {
-                this.products.push(data);
-                this.loadProducts()
+                //this.products.push(data);
+                //this.loadProducts();
               });
       } else {
-          this.dataService.updateProduct(this.product)
-              .subscribe(data => this.loadProducts());
+          this.dataService.updateProduct(this.product);
+              //.subscribe(data => this.loadProducts());
       }
       this.cancel();
   }
@@ -72,6 +66,9 @@ export class FetchDataComponent implements AfterViewInit {
   cancel() {
       this.product = new Product();
       this.tableMode = true;
+      this.sort = this.dataSource.sort;
+      this.loadProducts();
+      
   }
   delete(p: Product) {
       this.dataService.deleteProduct(p._id)
