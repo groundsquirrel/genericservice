@@ -3,6 +3,8 @@ export class Product {
         public _id?: ObjectId,
         public name?: string,
         public company?: string,
+        public os?: number,
+        public deliveryDate?: Date,
         public price?: number) { }
 }
 

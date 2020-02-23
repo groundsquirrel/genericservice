@@ -18,9 +18,15 @@ export class FetchDataComponent implements OnInit {
   displayedColumns: string[] = ['name', 'company', 'price'];
   dataSource: MatTableDataSource<Product>; // массив товаров
 
+  osList: OSList[] = [
+    {value: 0, viewValue: 'Android'},
+    {value: 1, viewValue: 'IOS'},
+    {value: 2, viewValue: 'Другое'}
+  ];
+
   constructor(private dataService: DataService) { }
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   applyFilter(filterValue: string) {
@@ -38,7 +44,7 @@ export class FetchDataComponent implements OnInit {
 
   // получаем данные через сервис
   loadProducts() {
-      console.info('loadProducts()');
+      //console.info('loadProducts()');
       this.dataService.getProducts()
           .subscribe((data: Product[]) => {
             this.dataSource = new MatTableDataSource(data);
@@ -51,12 +57,13 @@ export class FetchDataComponent implements OnInit {
       if (this.product._id == null) {
           this.dataService.createProduct(this.product)
               .subscribe((data: Product) => {
+                console.debug(data);
                 //this.products.push(data);
-                //this.loadProducts();
+                this.loadProducts();
               });
       } else {
-          this.dataService.updateProduct(this.product);
-              //.subscribe(data => this.loadProducts());
+          this.dataService.updateProduct(this.product)
+              .subscribe(data => this.loadProducts());
       }
       this.cancel();
   }
@@ -78,4 +85,9 @@ export class FetchDataComponent implements OnInit {
       this.cancel();
       this.tableMode = false;
   }
+}
+
+export interface OSList {
+  value: number;
+  viewValue: string;
 }
