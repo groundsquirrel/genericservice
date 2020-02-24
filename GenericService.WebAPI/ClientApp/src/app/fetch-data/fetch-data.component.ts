@@ -15,13 +15,19 @@ export class FetchDataComponent implements OnInit {
   product: Product = new Product();   // изменяемый товар
   tableMode: boolean = true;          // табличный режим
 
-  displayedColumns: string[] = ['name', 'company', 'price'];
+  displayedColumns: string[] = ['name', 'company', 'screenType', 'price'];
   dataSource: MatTableDataSource<Product>; // массив товаров
 
-  osList: OSList[] = [
+  osList: simpleObj[] = [
     {value: 0, viewValue: 'Android'},
     {value: 1, viewValue: 'IOS'},
     {value: 2, viewValue: 'Другое'}
+  ];
+
+  screenTypes: simpleObj[] = [
+    {value: 0, viewValue: 'TFT'},
+    {value: 1, viewValue: 'OLED'},
+    {value: 2, viewValue: 'IPS'}
   ];
 
   constructor(private dataService: DataService) { }
@@ -85,9 +91,14 @@ export class FetchDataComponent implements OnInit {
       this.cancel();
       this.tableMode = false;
   }
+
+  getScreenType(i: number): string {
+    let qwe = this.screenTypes.filter(f => f.value == i);
+    return qwe.length > 0 ? qwe[0].viewValue : null;
+  }
 }
 
-export interface OSList {
+export interface simpleObj {
   value: number;
   viewValue: string;
 }

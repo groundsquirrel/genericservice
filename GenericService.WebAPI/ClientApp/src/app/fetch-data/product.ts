@@ -4,7 +4,9 @@ export class Product {
         public name?: string,
         public company?: string,
         public os?: number,
+        public isNfc?: boolean,
         public deliveryDate?: Date,
+        public screenType?: number,
         public price?: number) { }
 }
 

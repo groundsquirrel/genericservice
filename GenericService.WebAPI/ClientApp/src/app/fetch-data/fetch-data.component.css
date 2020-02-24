@@ -11,17 +11,8 @@ table {
     width: 25%;
   }
   
-  .example-card {
+  .product-card {
     max-width: 400px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-
-  .example-container .mat-form-field + .mat-form-field {
-    margin-left: 8px;
   }
   
   .price-right-align {
@@ -35,4 +26,26 @@ table {
   
   input.price-right-align {
     -moz-appearance: textfield;
+  }
+
+  .screen-type-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 5px;
+  }
+  
+  .screen-type-radio-button {
+    margin: 0 10px;
+  }
+  
+  .checkbox-margin {
+    margin: 0 12px;
+  }
+
+  .mat-card-actions-div {
+    margin: 0px 0px 15px 10px;
+  } 
+
+  .mat-card-content {
+    margin-bottom: 0px;
   }
