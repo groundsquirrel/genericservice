@@ -22,6 +22,7 @@ import { ProductComponent } from './product/product.component';
 import { TableSortingExample } from './table-sorting-example/table-sorting-example';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getRussianPaginatorIntl } from './russian-paginator-intl';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [

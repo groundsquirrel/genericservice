@@ -15,13 +15,12 @@
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
-      <!-- Name Column -->
+
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Модель </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
-      <!-- Weight Column -->
       <ng-container matColumnDef="company">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Производитель </th>
         <td mat-cell *matCellDef="let element"> {{element.company}} </td>
@@ -29,13 +28,28 @@
 
       <ng-container matColumnDef="screenType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Тип экрана </th>
-        <!-- <td mat-cell *matCellDef="let element"> {{element.screenType}} </td> -->
-        <!-- <td mat-cell *matCellDef="let element"> {{screenTypes.filter(f => f.value == element.screenType).viewValue}} </td> -->
-        <!-- <td mat-cell *matCellDef="let element"> {{screenTypes[element.screenType]?.viewValue}} </td> -->
-        <td mat-cell *matCellDef="let element"> {{getScreenType(element.screenType)}} </td>
+        <td mat-cell *matCellDef="let element"> {{getScreenTypeName(element.screenType)}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
+      <ng-container matColumnDef="os">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> OS </th>
+        <td mat-cell *matCellDef="let element"> {{getOsName(element.os)}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Дата поставки </th>
+        <td mat-cell *matCellDef="let element">
+          {{getFormattedDate(element.deliveryDate)}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isNfc">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> NFC </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon aria-label="Example home icon">{{getBoolIconName(element.isNfc)}}</mat-icon>
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Цена </th>
         <td mat-cell *matCellDef="let element"> {{element.price}} </td>

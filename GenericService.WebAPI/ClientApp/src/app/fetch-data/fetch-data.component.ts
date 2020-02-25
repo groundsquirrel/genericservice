@@ -3,6 +3,8 @@ import { MatTableDataSource, MatSort } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 import { DataService } from './data.service';
 import { Product as Product } from './product';
+import * as moment from 'moment';
+
  
 @Component({
   selector: 'app-fetch-data',
@@ -15,7 +17,7 @@ export class FetchDataComponent implements OnInit {
   product: Product = new Product();   // изменяемый товар
   tableMode: boolean = true;          // табличный режим
 
-  displayedColumns: string[] = ['name', 'company', 'screenType', 'price'];
+  displayedColumns: string[] = ['name', 'company', 'screenType', 'os', 'deliveryDate', 'isNfc', 'price'];
   dataSource: MatTableDataSource<Product>; // массив товаров
 
   osList: simpleObj[] = [
@@ -92,11 +94,28 @@ export class FetchDataComponent implements OnInit {
       this.tableMode = false;
   }
 
-  getScreenType(i: number): string {
-    let qwe = this.screenTypes.filter(f => f.value == i);
-    return qwe.length > 0 ? qwe[0].viewValue : null;
+  getScreenTypeName(i: number): string {
+    return this.getFirstName(this.screenTypes, i);
   }
+
+  getOsName(i: number): string {
+    return this.getFirstName(this.osList, i);
+  }
+
+  getFirstName(arr: simpleObj[], i: number): string {
+    let filtered = arr.filter(f => f.value == i);
+    return filtered.length > 0 ? filtered[0].viewValue : null;
+  }
+
+  getBoolIconName(b: boolean): string {
+    return b ? 'done' : '';
+  }
+
+   getFormattedDate(d: Date): string {
+     return moment(d).format('DD.MM.YYYY');
+   }
 }
+
 
 export interface simpleObj {
   value: number;
