@@ -72,7 +72,7 @@ export class FetchDataComponent implements OnInit {
               });
       } else {
           this.dataService.updateProduct(this.product)
-              .subscribe(data => this.loadProducts());
+              .subscribe(() => this.loadProducts());
       }
       this.cancel();
   }
@@ -88,7 +88,7 @@ export class FetchDataComponent implements OnInit {
   }
   delete(p: Product) {
       this.dataService.deleteProduct(p._id)
-          .subscribe(data => this.loadProducts());
+          .subscribe(() => this.loadProducts());
   }
   add() {
       this.cancel();
@@ -113,7 +113,7 @@ export class FetchDataComponent implements OnInit {
   }
 
    getFormattedDate(d: Date): string {
-     return moment(d).format('DD.MM.YYYY');
+     return d != null ? moment(d).format('DD.MM.YYYY') : '';
    }
 }
 

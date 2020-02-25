@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { MatInputModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSortModule, MatPaginatorModule, MatIconModule, MatCardModule, MatPaginatorIntl } from '@angular/material';
@@ -22,7 +22,6 @@ import { ProductComponent } from './product/product.component';
 import { TableSortingExample } from './table-sorting-example/table-sorting-example';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getRussianPaginatorIntl } from './russian-paginator-intl';
-import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
