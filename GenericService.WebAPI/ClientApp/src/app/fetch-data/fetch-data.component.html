@@ -75,7 +75,7 @@
     <mat-card-content>
       <mat-form-field appearance="fill">
         <mat-label>Модель</mat-label>
-        <input type="text" [(ngModel)]="product.name" matInput>
+        <input type="text" [(ngModel)]="product.name" matInput required>
       </mat-form-field>
       
       <mat-form-field appearance="fill">
@@ -102,7 +102,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-checkbox class="checkbox-margin" color="primary" [(ngModel)]="product.isNfc">NFC</mat-checkbox>
+      
 
       <mat-form-field appearance="fill">
         <mat-label>Дата поставки</mat-label>
@@ -110,6 +110,8 @@
         <mat-datepicker-toggle matSuffix [for]="deliveryDate"></mat-datepicker-toggle>
         <mat-datepicker #deliveryDate></mat-datepicker>
       </mat-form-field>  
+
+      <mat-checkbox class="checkbox-margin" color="primary" [(ngModel)]="product.isNfc">NFC</mat-checkbox>
 
       <mat-form-field appearance="fill">
         <mat-label>Цена</mat-label>
