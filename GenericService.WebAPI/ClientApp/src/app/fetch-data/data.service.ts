@@ -15,12 +15,12 @@ export class DataService {
     }
  
     createProduct(product: Product) {
-        return this.http.post(this.url, product);
+        return this.http.post(this.url, product, { observe: 'response' });
     }
     updateProduct(product: Product) {
-        return this.http.put(this.url + '/' + product._id.$oid, product);
+        return this.http.put(this.url + '/' + product._id.$oid, product, { observe: 'response' });
     }
     deleteProduct(id: ObjectId) {
-        return this.http.delete(this.url + '/' + id.$oid);
+        return this.http.delete(this.url + '/' + id.$oid, { observe: 'response' });
     }
 }

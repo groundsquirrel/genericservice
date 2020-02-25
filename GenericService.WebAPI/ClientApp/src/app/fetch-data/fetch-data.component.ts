@@ -5,6 +5,7 @@ import { DataService } from './data.service';
 import { Product as Product } from './product';
 import * as moment from 'moment';
 
+import { HttpResponse } from '@angular/common/http';
  
 @Component({
   selector: 'app-fetch-data',
@@ -64,7 +65,7 @@ export class FetchDataComponent implements OnInit {
   save() {
       if (this.product._id == null) {
           this.dataService.createProduct(this.product)
-              .subscribe((data: Product) => {
+              .subscribe((data: HttpResponse<Product>) => {
                 console.debug(data);
                 //this.products.push(data);
                 this.loadProducts();
