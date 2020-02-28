@@ -18,6 +18,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class FetchDataComponent implements OnInit {
   product_form: FormGroup;
+  
   name = new FormControl(null, Validators.required);
   company = new FormControl(null, Validators.required);
   screenType = new FormControl(0, [Validators.min(1), Validators.max(3)]);
@@ -32,7 +33,7 @@ export class FetchDataComponent implements OnInit {
   product: Product = new Product();   // изменяемый товар
   tableMode: boolean = true;          // табличный режим
 
-  displayedColumns: string[] = ['name', 'company', 'screenType', 'os', 'deliveryDate', 'isNfc', 'price'];
+  displayedColumns: string[] = ['name', 'company', 'screenType', 'os', 'deliveryDate', 'isNfc', 'price', 'createdAt'];
   dataSource: MatTableDataSource<Product>; // массив товаров
 
   osList: simpleObj[] = [
@@ -44,27 +45,31 @@ export class FetchDataComponent implements OnInit {
 
   screenTypes: simpleObj[] = [
     {value: 0, viewValue: 'Не выбрано'},
-    {value: 1, viewValue: 'OLED'},
+    {value: 1, viewValue: 'AMOLED'},
     {value: 2, viewValue: 'IPS'},
     {value: 3, viewValue: 'TFT'},
   ];
 
   constructor(private dataService: DataService, fb: FormBuilder) {
-    this.product_form = fb.group({
-      name: this.name,
-      company: this.company,
-      screenType: this.screenType,
-      os: this.os,
-      deliveryDate: this.deliveryDate,
-      isNfc : this.isNfc,
-      price: this.price
-    });
+    this.buildForm(fb);
     this.minDate = this.addDays(new Date(), -7);
     this.maxDate = this.addDays(new Date(), 7);
    }
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
+
+  private buildForm(fb: FormBuilder) {
+    this.product_form = fb.group({
+      name: this.name,
+      company: this.company,
+      screenType: this.screenType,
+      os: this.os,
+      deliveryDate: this.deliveryDate,
+      isNfc: this.isNfc,
+      price: this.price
+    });
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -109,6 +114,7 @@ export class FetchDataComponent implements OnInit {
   }
   cancel() {
       this.product = new Product();
+      this.product_form.reset();
       this.tableMode = true;
       this.sort = this.dataSource.sort;
       this.loadProducts();
@@ -140,9 +146,17 @@ export class FetchDataComponent implements OnInit {
     return b ? 'done' : '';
   }
 
-   getFormattedDate(d: Date): string {
-     return d != null ? moment(d).format('DD.MM.YYYY') : '';
-   }
+  getFormattedDate(d: Date, format: string): string {
+    return d != null ? moment(d).format(format) : '';
+  }
+
+  getFormatDate(d: Date): string {
+    return this.getFormattedDate(d, 'DD.MM.YYYY');
+  }
+
+  getFormatDateTime(d: Date): string {
+    return this.getFormattedDate(d, 'DD.MM.YYYY HH:mm:ss');
+  }
 
   submit() {
     console.log(this.product_form);

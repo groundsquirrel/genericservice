@@ -7,7 +7,10 @@ export class Product {
         public isNfc?: boolean,
         public deliveryDate?: Date,
         public screenType?: number,
-        public price?: number) { }
+        public price?: number,
+        public createdAt?: Date) {
+            createdAt = new Date();
+         }
 }
 
 export class ObjectId {

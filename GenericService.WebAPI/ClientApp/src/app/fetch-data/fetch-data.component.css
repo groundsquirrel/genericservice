@@ -8,7 +8,7 @@ table {
   }
   
   td, th {
-    width: 14%;
+    width: 13%;
   }
   
   .product-card {
@@ -48,4 +48,20 @@ table {
 
   .mat-card-content {
     margin-bottom: 0px;
+  }
+
+  .mat-column-isNfc {
+    width: 5%;
+  }
+
+  .mat-column-name {
+    width: 20%;
+  }
+
+  .mat-column-screenType {
+    width: 7%;
+  }
+
+  .mat-column-os {
+    width: 10%;
   }
