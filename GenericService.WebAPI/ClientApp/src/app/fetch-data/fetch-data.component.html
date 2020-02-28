@@ -66,6 +66,7 @@
 <!--шаблон для добавления-->
 <ng-template #create>
   <br/>
+  <form class="example-container" [formGroup]="product_form" (ngSubmit)="submit()">
   <mat-card class="product-card">
     <mat-card-header>
       <mat-card-title>Добавление модели</mat-card-title>
@@ -73,59 +74,66 @@
     </mat-card-header>
 
     <mat-card-content>
-      <mat-form-field appearance="fill">
-        <mat-label>Модель</mat-label>
-        <input type="text" [(ngModel)]="product.name" matInput required>
-      </mat-form-field>
       
       <mat-form-field appearance="fill">
-        <mat-label>Производитель</mat-label>
-        <input type="text" [(ngModel)]="product.company" matInput>
+        <mat-label>Модель</mat-label>
+        <input type="text" matInput [formControl]="name" required>
+        <!-- <mat-error *ngIf="name.invalid">Min size: 10px</mat-error> -->
       </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Производитель</mat-label>
+        <input type="text" [formControl]="company" matInput required>
+      </mat-form-field>
+      
 
       <label id="screen-type-label">Тип экрана:</label>
       <mat-radio-group
         aria-labelledby="screen-type-label"
         class="screen-type-radio-group"
-        [(ngModel)]="product.screenType">
+        [formControl]="screenType">
         <mat-radio-button class="screen-type-radio-button" *ngFor="let screenType of screenTypes" [value]="screenType.value">
           {{screenType.viewValue}}
         </mat-radio-button>
       </mat-radio-group>
 
+      
       <mat-form-field appearance="fill">
         <mat-label>OS</mat-label>
-        <mat-select [(ngModel)]="product.os" name="os" required>
+        <mat-select [formControl]="os" name="os" required>
           <mat-option *ngFor="let os of osList" [value]="os.value">
             {{os.viewValue}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      
-
       <mat-form-field appearance="fill">
         <mat-label>Дата поставки</mat-label>
-        <input matInput [matDatepicker]="deliveryDate" [(ngModel)]="product.deliveryDate">
-        <mat-datepicker-toggle matSuffix [for]="deliveryDate"></mat-datepicker-toggle>
-        <mat-datepicker #deliveryDate></mat-datepicker>
+        <input matInput [matDatepicker]="deliveryDateControl" [min]="minDate" [max]="maxDate" [formControl]="deliveryDate" required>
+        <mat-datepicker-toggle matSuffix [for]="deliveryDateControl"></mat-datepicker-toggle>
+        <mat-datepicker #deliveryDateControl></mat-datepicker>
       </mat-form-field>  
 
-      <mat-checkbox class="checkbox-margin" color="primary" [(ngModel)]="product.isNfc">NFC</mat-checkbox>
+      <mat-checkbox class="checkbox-margin" color="primary" [formControl]="isNfc">NFC</mat-checkbox>
 
       <mat-form-field appearance="fill">
         <mat-label>Цена</mat-label>
-        <input matInput type="number" class="price-right-align" [(ngModel)]="product.price">
+        <input matInput type="number" class="price-right-align" [formControl]="price" required>
         <span matPrefix></span>
-        <span matSuffix>.00 &#8381;</span>
+        <span matSuffix>,00 &#8381;</span>
       </mat-form-field>
+      
+      
+
     </mat-card-content>
     
     <mat-card-actions>
       <div class="mat-card-actions-div">
-          <button mat-stroked-button color="primary" (click)="save()">Сохранить</button>
+          <button mat-stroked-button color="primary" [disabled]="product_form.invalid">Сохранить</button>
           <button mat-stroked-button (click)="cancel()">Отмена</button>
       </div>
     </mat-card-actions>
+  
 </mat-card>
+</form>
 </ng-template>

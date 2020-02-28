@@ -1,6 +1,9 @@
 import { Component, ViewChild,  OnInit } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
+import {FormControl, Validators, FormGroup, FormBuilder, AbstractControl} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'
+
 import { DataService } from './data.service';
 import { Product as Product } from './product';
 import * as moment from 'moment';
@@ -14,7 +17,18 @@ import { HttpResponse } from '@angular/common/http';
   providers: [DataService]
 })
 export class FetchDataComponent implements OnInit {
-  
+  product_form: FormGroup;
+  name = new FormControl(null, Validators.required);
+  company = new FormControl(null, Validators.required);
+  screenType = new FormControl(0, [Validators.min(1), Validators.max(3)]);
+  os = new FormControl(0, [Validators.min(1), Validators.max(3)]);
+  deliveryDate = new FormControl(new Date(), Validators.required);
+  isNfc = new FormControl();
+  price = new FormControl(0, Validators.min(1));
+
+  minDate: Date;
+  maxDate: Date;
+
   product: Product = new Product();   // изменяемый товар
   tableMode: boolean = true;          // табличный режим
 
@@ -22,18 +36,32 @@ export class FetchDataComponent implements OnInit {
   dataSource: MatTableDataSource<Product>; // массив товаров
 
   osList: simpleObj[] = [
-    {value: 0, viewValue: 'Android'},
-    {value: 1, viewValue: 'IOS'},
-    {value: 2, viewValue: 'Другое'}
+    {value: 0, viewValue: 'Не выбрано'},
+    {value: 1, viewValue: 'Android'},
+    {value: 2, viewValue: 'IOS'},
+    {value: 3, viewValue: 'Другое'}
   ];
 
   screenTypes: simpleObj[] = [
-    {value: 0, viewValue: 'TFT'},
+    {value: 0, viewValue: 'Не выбрано'},
     {value: 1, viewValue: 'OLED'},
-    {value: 2, viewValue: 'IPS'}
+    {value: 2, viewValue: 'IPS'},
+    {value: 3, viewValue: 'TFT'},
   ];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, fb: FormBuilder) {
+    this.product_form = fb.group({
+      name: this.name,
+      company: this.company,
+      screenType: this.screenType,
+      os: this.os,
+      deliveryDate: this.deliveryDate,
+      isNfc : this.isNfc,
+      price: this.price
+    });
+    this.minDate = this.addDays(new Date(), -7);
+    this.maxDate = this.addDays(new Date(), 7);
+   }
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -63,8 +91,8 @@ export class FetchDataComponent implements OnInit {
   }
   // сохранение данных
   save() {
-      if (this.product._id == null) {
-          this.dataService.createProduct(this.product)
+      if (this.product_form.value._id == null) {
+          this.dataService.createProduct(this.product_form.value)
               .subscribe((data: HttpResponse<Product>) => {
                 console.debug(data);
                 //this.products.push(data);
@@ -115,6 +143,17 @@ export class FetchDataComponent implements OnInit {
    getFormattedDate(d: Date): string {
      return d != null ? moment(d).format('DD.MM.YYYY') : '';
    }
+
+  submit() {
+    console.log(this.product_form);
+    if (this.product_form.status == 'VALID')
+      this.save();
+  }
+
+  addDays(date: Date, days: number): Date {
+    date.setDate(date.getDate() + days);
+    return date;
+  }
 }
 
 
