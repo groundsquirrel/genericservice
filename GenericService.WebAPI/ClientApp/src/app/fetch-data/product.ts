@@ -8,7 +8,8 @@ export class Product {
         public deliveryDate?: Date,
         public screenType?: number,
         public price?: number,
-        public createdAt?: Date) {
+        public createdAt?: Date,
+        public imgUrl?: string) {
             createdAt = new Date();
          }
 }

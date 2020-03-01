@@ -132,7 +132,11 @@
         <span matSuffix>,00 &#8381;</span>
       </mat-form-field>
       
-      
+      <mat-form-field appearance="fill">
+        <mat-label>Ссылка на изображение</mat-label>
+        <input type="text" matInput [formControl]="imgUrl" required>
+        <!-- <mat-error *ngIf="name.invalid">Min size: 10px</mat-error> -->
+      </mat-form-field>
 
     </mat-card-content>
     

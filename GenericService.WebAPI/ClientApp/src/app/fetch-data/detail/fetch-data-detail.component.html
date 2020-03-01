@@ -1,9 +1,45 @@
-<div *ngIf="loaded">
-    <h2>Модель {{product.id}}</h2>
+<!-- <div *ngIf="loaded">
+    <h2>Модель {{product._id.$oid}}</h2>
     <div>
         <p><b>Модель:</b> {{product.name}}</p>
         <p><b>Производитель:</b> {{product.company}}</p>
         <p><b>Цена:</b> {{product.price}}</p>
         <p><a routerLink="/fetch-data" class="nav-link">К списку моделей</a></p>
     </div>
-</div>
+</div> -->
+
+<p><a routerLink="/fetch-data" class="nav-link">К списку моделей</a></p>
+
+<mat-card class="product-card" *ngIf="loaded">
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>Модель </mat-card-title>
+      <mat-card-subtitle>{{product.company}} {{product.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{product.imgUrl}}" alt="Photo of a {{product.company}} {{product.name}}">
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+      <mat-grid-list cols="2" rowHeight="1:1">
+        <mat-grid-tile><mat-list role="list">
+            <mat-list-item role="listitem"><h6>Модель:</h6></mat-list-item>
+            <mat-list-item role="listitem">Производитель:</mat-list-item>
+            <mat-list-item role="listitem">Item 3</mat-list-item>
+          </mat-list></mat-grid-tile>
+        <mat-grid-tile><mat-list role="list">
+            <mat-list-item role="listitem">{{product.name}}</mat-list-item>
+            <mat-list-item role="listitem">{{product.company}}</mat-list-item>
+            <mat-list-item role="listitem">Item 3</mat-list-item>
+          </mat-list></mat-grid-tile>
+        
+      </mat-grid-list>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+</mat-card>  

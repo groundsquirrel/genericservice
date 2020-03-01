@@ -26,6 +26,7 @@ export class FetchDataComponent implements OnInit {
   deliveryDate = new FormControl(new Date(), Validators.required);
   isNfc = new FormControl();
   price = new FormControl(0, Validators.min(1));
+  imgUrl = new FormControl(null, Validators.required);
 
   minDate: Date;
   maxDate: Date;
@@ -67,7 +68,8 @@ export class FetchDataComponent implements OnInit {
       os: this.os,
       deliveryDate: this.deliveryDate,
       isNfc: this.isNfc,
-      price: this.price
+      price: this.price,
+      imgUrl: this.imgUrl
     });
   }
 

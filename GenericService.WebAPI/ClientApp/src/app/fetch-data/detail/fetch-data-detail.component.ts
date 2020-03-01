@@ -5,6 +5,7 @@ import { Product } from '../product';
  
 @Component({
     templateUrl: './fetch-data-detail.component.html',
+    styleUrls: ['fetch-data-detail.component.css'],
     providers: [DataService]
 })
 export class FetchDataDetailComponent implements OnInit {
