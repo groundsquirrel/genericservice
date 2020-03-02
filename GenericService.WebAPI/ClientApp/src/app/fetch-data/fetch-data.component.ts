@@ -5,7 +5,7 @@ import {FormControl, Validators, FormGroup, FormBuilder, AbstractControl} from '
 import { ReactiveFormsModule } from '@angular/forms'
 
 import { DataService } from './data.service';
-import { Product as Product } from './product';
+import { Product as Product, ProductExt } from './product';
 import * as moment from 'moment';
 
 import { HttpResponse } from '@angular/common/http';
@@ -18,6 +18,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class FetchDataComponent implements OnInit {
   product_form: FormGroup;
+  productExt: ProductExt;
   
   name = new FormControl(null, Validators.required);
   company = new FormControl(null, Validators.required);
@@ -44,12 +45,12 @@ export class FetchDataComponent implements OnInit {
     {value: 3, viewValue: 'Другое'}
   ];
 
-  screenTypes: simpleObj[] = [
+screenTypes: simpleObj[] = [
     {value: 0, viewValue: 'Не выбрано'},
     {value: 1, viewValue: 'AMOLED'},
     {value: 2, viewValue: 'IPS'},
     {value: 3, viewValue: 'TFT'},
-  ];
+];
 
   constructor(private dataService: DataService, fb: FormBuilder) {
     this.buildForm(fb);
@@ -88,7 +89,7 @@ export class FetchDataComponent implements OnInit {
 
   // получаем данные через сервис
   loadProducts() {
-      //console.info('loadProducts()');
+      console.info('loadProducts()');
       this.dataService.getProducts()
           .subscribe((data: Product[]) => {
             this.dataSource = new MatTableDataSource(data);
@@ -131,34 +132,7 @@ export class FetchDataComponent implements OnInit {
       this.tableMode = false;
   }
 
-  getScreenTypeName(i: number): string {
-    return this.getFirstName(this.screenTypes, i);
-  }
-
-  getOsName(i: number): string {
-    return this.getFirstName(this.osList, i);
-  }
-
-  getFirstName(arr: simpleObj[], i: number): string {
-    let filtered = arr.filter(f => f.value == i);
-    return filtered.length > 0 ? filtered[0].viewValue : null;
-  }
-
-  getBoolIconName(b: boolean): string {
-    return b ? 'done' : '';
-  }
-
-  getFormattedDate(d: Date, format: string): string {
-    return d != null ? moment(d).format(format) : '';
-  }
-
-  getFormatDate(d: Date): string {
-    return this.getFormattedDate(d, 'DD.MM.YYYY');
-  }
-
-  getFormatDateTime(d: Date): string {
-    return this.getFormattedDate(d, 'DD.MM.YYYY HH:mm:ss');
-  }
+  
 
   submit() {
     console.log(this.product_form);

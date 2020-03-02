@@ -25,14 +25,14 @@
       </p>
       <mat-grid-list cols="2" rowHeight="1:1">
         <mat-grid-tile><mat-list role="list">
-            <mat-list-item role="listitem"><h6>Модель:</h6></mat-list-item>
+            <mat-list-item role="listitem">Модель:</mat-list-item>
             <mat-list-item role="listitem">Производитель:</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
+            <mat-list-item role="listitem">Тип экрана:</mat-list-item>
           </mat-list></mat-grid-tile>
         <mat-grid-tile><mat-list role="list">
             <mat-list-item role="listitem">{{product.name}}</mat-list-item>
             <mat-list-item role="listitem">{{product.company}}</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
+            <mat-list-item role="listitem">{{getScreenTypeName(element.screenType)}}</mat-list-item>
           </mat-list></mat-grid-tile>
         
       </mat-grid-list>

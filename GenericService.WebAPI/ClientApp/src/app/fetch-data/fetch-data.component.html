@@ -30,25 +30,25 @@
 
       <ng-container matColumnDef="screenType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Тип экрана </th>
-        <td mat-cell *matCellDef="let element"> {{getScreenTypeName(element.screenType)}} </td>
+        <td mat-cell *matCellDef="let element"> {{productExt.screenTypeName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="os">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> OS </th>
-        <td mat-cell *matCellDef="let element"> {{getOsName(element.os)}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.OsName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="deliveryDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Дата поставки </th>
         <td mat-cell *matCellDef="let element">
-          {{getFormatDate(element.deliveryDate)}}
+          {{element.deliveryDateText}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="isNfc">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> NFC </th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon aria-label="Example home icon">{{getBoolIconName(element.isNfc)}}</mat-icon>
+          <mat-icon aria-label="Example home icon">{{element.isNfcText}}</mat-icon>
         </td>
       </ng-container>
 
@@ -60,7 +60,7 @@
       <ng-container matColumnDef="createdAt">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Дата создания </th>
         <td mat-cell *matCellDef="let element">
-          {{getFormatDateTime(element.createdAt)}}
+          {{element.createdAtText}}
         </td>
       </ng-container>
 
