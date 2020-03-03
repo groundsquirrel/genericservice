@@ -1,4 +1,3 @@
-import { simpleObj } from "./fetch-data.component";
 import * as moment from 'moment';
 
 export class Product {
@@ -15,8 +14,35 @@ export class Product {
         public createdAt?: Date,
         public imgUrl?: string) {
             createdAt = new Date();
-            console.debug('new Product()');
-         }
+        }
+
+    static fromProduct(product: Product) {
+        return new Product(
+                product._id,
+                product.name,
+                product.company,
+                product.os,
+                product.isNfc,
+                product.deliveryDate,
+                product.screenType,
+                product.price,
+                product.createdAt,
+                product.imgUrl
+        );
+    }
+
+    fillObject(product: Product) {
+        this._id = product._id;
+        this.name = product.name;
+        this.company =  product.company;
+        this.os = product.os;
+        this.isNfc = product.isNfc;
+        this.deliveryDate = product.deliveryDate;
+        this.screenType = product.screenType;
+        this.price = product.price;
+        this.createdAt = product.createdAt;
+        this.imgUrl = product.imgUrl;
+    }
          
     osList: simpleObj[] = [
         {value: 0, viewValue: 'Не выбрано'},
@@ -32,13 +58,11 @@ export class Product {
         {value: 3, viewValue: 'TFT'},
     ];
     
-    screenTypeName(): string {   
-        console.debug('ScreenTypeName()');
-        //return this.getFirstName(this.screenTypes, this.screenType) ?? 'qweqwe';
-        return this.screenType.toString();
+    get screenTypeName(): string {   
+        return this.getFirstName(this.screenTypes, this.screenType);
     }
 
-    public get OsName(): string {
+    public get osName(): string {
         return this.getFirstName(this.osList, this.os);
     }
 
@@ -82,25 +106,7 @@ export class ObjectId {
         ) { }
 }
 
-export class ProductExt
-{
-    static osList: simpleObj[] = [
-        {value: 0, viewValue: 'Не выбрано'},
-        {value: 1, viewValue: 'Android'},
-        {value: 2, viewValue: 'IOS'},
-        {value: 3, viewValue: 'Другое'}
-    ];
-
-    static screenTypes: simpleObj[] = [
-        {value: 0, viewValue: 'Не выбрано'},
-        {value: 1, viewValue: 'AMOLED'},
-        {value: 2, viewValue: 'IPS'},
-        {value: 3, viewValue: 'TFT'},
-    ];
-    
-    static get screenTypeName(): string {   
-        
-        //return this.getFirstName(this.screenTypes, this.screenType) ?? 'qweqwe';
-        return 'ScreenTypeName()';
-    }
-}
+export interface simpleObj {
+    value: number;
+    viewValue: string;
+  }

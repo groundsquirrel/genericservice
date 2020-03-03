@@ -30,12 +30,12 @@
 
       <ng-container matColumnDef="screenType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Тип экрана </th>
-        <td mat-cell *matCellDef="let element"> {{productExt.screenTypeName}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.screenTypeName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="os">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> OS </th>
-        <td mat-cell *matCellDef="let element"> {{element.OsName}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.osName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="deliveryDate">
@@ -48,7 +48,7 @@
       <ng-container matColumnDef="isNfc">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> NFC </th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon aria-label="Example home icon">{{element.isNfcText}}</mat-icon>
+          <mat-icon aria-label="Example home icon">{{element.isNfcIcon}}</mat-icon>
         </td>
       </ng-container>
 
@@ -101,7 +101,7 @@
         aria-labelledby="screen-type-label"
         class="screen-type-radio-group"
         [formControl]="screenType">
-        <mat-radio-button class="screen-type-radio-button" *ngFor="let screenType of screenTypes" [value]="screenType.value">
+        <mat-radio-button class="screen-type-radio-button" *ngFor="let screenType of product.screenTypes" [value]="screenType.value">
           {{screenType.viewValue}}
         </mat-radio-button>
       </mat-radio-group>
@@ -110,7 +110,7 @@
       <mat-form-field appearance="fill">
         <mat-label>OS</mat-label>
         <mat-select [formControl]="os" name="os" required>
-          <mat-option *ngFor="let os of osList" [value]="os.value">
+          <mat-option *ngFor="let os of product.osList" [value]="os.value">
             {{os.viewValue}}
           </mat-option>
         </mat-select>

@@ -1,12 +1,10 @@
 import { Component, ViewChild,  OnInit } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
-import {FormControl, Validators, FormGroup, FormBuilder, AbstractControl} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'
+import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 
 import { DataService } from './data.service';
-import { Product as Product, ProductExt } from './product';
-import * as moment from 'moment';
+import { Product } from './product';
 
 import { HttpResponse } from '@angular/common/http';
  
@@ -18,8 +16,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class FetchDataComponent implements OnInit {
   product_form: FormGroup;
-  productExt: ProductExt;
-  
+    
   name = new FormControl(null, Validators.required);
   company = new FormControl(null, Validators.required);
   screenType = new FormControl(0, [Validators.min(1), Validators.max(3)]);
@@ -37,20 +34,6 @@ export class FetchDataComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'company', 'screenType', 'os', 'deliveryDate', 'isNfc', 'price', 'createdAt'];
   dataSource: MatTableDataSource<Product>; // массив товаров
-
-  osList: simpleObj[] = [
-    {value: 0, viewValue: 'Не выбрано'},
-    {value: 1, viewValue: 'Android'},
-    {value: 2, viewValue: 'IOS'},
-    {value: 3, viewValue: 'Другое'}
-  ];
-
-screenTypes: simpleObj[] = [
-    {value: 0, viewValue: 'Не выбрано'},
-    {value: 1, viewValue: 'AMOLED'},
-    {value: 2, viewValue: 'IPS'},
-    {value: 3, viewValue: 'TFT'},
-];
 
   constructor(private dataService: DataService, fb: FormBuilder) {
     this.buildForm(fb);
@@ -92,7 +75,8 @@ screenTypes: simpleObj[] = [
       console.info('loadProducts()');
       this.dataService.getProducts()
           .subscribe((data: Product[]) => {
-            this.dataSource = new MatTableDataSource(data);
+            let productsTemp = data.map(m => Product.fromProduct(m));
+            this.dataSource = new MatTableDataSource(productsTemp);
             this.dataSource.sort = this.sort; 
             this.dataSource.paginator = this.paginator;
           }, error => console.error(error));
@@ -144,10 +128,4 @@ screenTypes: simpleObj[] = [
     date.setDate(date.getDate() + days);
     return date;
   }
-}
-
-
-export interface simpleObj {
-  value: number;
-  viewValue: string;
 }
