@@ -57,26 +57,14 @@ export class Product {
         {value: 2, viewValue: 'IPS'},
         {value: 3, viewValue: 'TFT'},
     ];
-    
-    get screenTypeName(): string {   
-        return this.getFirstName(this.screenTypes, this.screenType);
-    }
-
-    public get osName(): string {
-        return this.getFirstName(this.osList, this.os);
-    }
 
     getFirstName(arr: simpleObj[], i: number): string {
         let filtered = arr.filter(f => f.value == i);
         return filtered.length > 0 ? filtered[0].viewValue : null;
     }
 
-    public get isNfcIcon(): string {
-        return this.getBoolIconName(this.isNfc);
-    }
-
     getBoolIconName(b: boolean): string {
-        return b ? 'done' : '';
+        return b ? 'done' : 'clear';
     }
 
     getFormattedDate(d: Date, format: string): string {
@@ -89,6 +77,19 @@ export class Product {
 
     getFormatDateTime(d: Date): string {
         return this.getFormattedDate(d, 'DD.MM.YYYY HH:mm:ss');
+    }
+
+    
+    get screenTypeName(): string {   
+        return this.getFirstName(this.screenTypes, this.screenType);
+    }
+
+    public get osName(): string {
+        return this.getFirstName(this.osList, this.os);
+    }
+
+    public get isNfcIcon(): string {
+        return this.getBoolIconName(this.isNfc);
     }
 
     public get deliveryDateText(): string {

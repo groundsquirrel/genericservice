@@ -13,7 +13,7 @@ export class FetchDataDetailComponent implements OnInit {
     id: string;
     product: Product;
     loaded: boolean = false;
- 
+
     constructor(private dataService: DataService, activeRoute: ActivatedRoute) {
         this.id = activeRoute.snapshot.params["id"];
     }
@@ -21,6 +21,9 @@ export class FetchDataDetailComponent implements OnInit {
     ngOnInit() {
         if (this.id)
             this.dataService.getProduct(this.id)
-                .subscribe((data: Product) => { this.product = data; this.loaded = true; });
+                .subscribe((data: Product) => { 
+                    this.product = Product.fromProduct(data); 
+                    this.loaded = true; 
+                });
     }
 }
