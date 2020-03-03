@@ -1,0 +1,35 @@
+<p><a routerLink="/fetch-data" class="nav-link">К списку моделей</a></p>
+
+<mat-card class="product-card" *ngIf="loaded">
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>Модель </mat-card-title>
+      <mat-card-subtitle>{{product.company}} {{product.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{product.imgUrl}}" alt="Photo of a {{product.company}} {{product.name}}">
+    <mat-card-content>
+      <mat-grid-list cols="2">
+        <mat-grid-tile><mat-list role="list">
+            <mat-list-item role="listitem">Модель:</mat-list-item>
+            <mat-list-item role="listitem">Производитель:</mat-list-item>
+            <mat-list-item role="listitem">Тип экрана:</mat-list-item>
+            <mat-list-item role="listitem">OS:</mat-list-item>
+            <mat-list-item role="listitem">Дата поставки:</mat-list-item>
+            <mat-list-item role="listitem">NFC:</mat-list-item>
+            <mat-list-item role="listitem">Цена:</mat-list-item>
+          </mat-list></mat-grid-tile>
+        <mat-grid-tile><mat-list role="list">
+            <mat-list-item role="listitem">{{product.name}}</mat-list-item>
+            <mat-list-item role="listitem">{{product.company}}</mat-list-item>
+            <mat-list-item role="listitem">{{product.screenTypeName}}</mat-list-item>
+            <mat-list-item role="listitem">{{product.osName}}</mat-list-item>
+            <mat-list-item role="listitem">{{product.deliveryDateText}}</mat-list-item>
+            <mat-list-item role="listitem"><mat-icon aria-label="Example home icon">{{product.isNfcIcon}}</mat-icon></mat-list-item>
+            <mat-list-item role="listitem">{{product.price}}</mat-list-item>
+          </mat-list></mat-grid-tile>
+        
+      </mat-grid-list>
+      
+    </mat-card-content>
+   
+</mat-card>  

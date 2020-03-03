@@ -13,8 +13,13 @@ export class DataService {
     getProducts() {
         return this.http.get(this.url);
     }
+
+    getProduct(id: string) {
+        return this.http.get(this.url + '/' + id);
+    }
  
     createProduct(product: Product) {
+        product.createdAt = new Date();
         return this.http.post(this.url, product, { observe: 'response' });
     }
     updateProduct(product: Product) {
