@@ -1,0 +1,67 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 13%;
+  }
+  
+  .product-card {
+    max-width: 400px;
+  }
+  
+  .price-right-align {
+    text-align: right;
+  }
+  
+  input.price-right-align::-webkit-outer-spin-button,
+  input.price-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.price-right-align {
+    -moz-appearance: textfield;
+  }
+
+  .screen-type-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 5px;
+  }
+  
+  .screen-type-radio-button {
+    margin: 0 10px;
+  }
+  
+  .checkbox-margin {
+    margin: 0 12px;
+  }
+
+  .mat-card-actions-div {
+    margin: 0px 0px 15px 8px;
+  } 
+
+  .mat-card-content {
+    margin-bottom: 0px;
+  }
+
+  .mat-column-isNfc {
+    width: 5%;
+  }
+
+  .mat-column-name {
+    width: 20%;
+  }
+
+  .mat-column-screenType {
+    width: 7%;
+  }
+
+  .mat-column-os {
+    width: 10%;
+  }

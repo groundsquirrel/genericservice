@@ -23,6 +23,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FetchDataDetailComponent } from './fetch-data/detail/fetch-data-detail.component';
 import { ProductComponent } from './product/product.component';
 import { TableSortingExample } from './table-sorting-example/table-sorting-example';
+import { VagonComponent } from './vagon/vagon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getRussianPaginatorIntl } from './russian-paginator-intl';
 
@@ -35,7 +36,8 @@ import { getRussianPaginatorIntl } from './russian-paginator-intl';
     FetchDataComponent,
     FetchDataDetailComponent,
     ProductComponent,
-    TableSortingExample
+    TableSortingExample,
+    VagonComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -64,6 +66,7 @@ import { getRussianPaginatorIntl } from './russian-paginator-intl';
       { path: 'fetch-data/:id', component: FetchDataDetailComponent },
       { path: 'product', component: ProductComponent },
       { path: 'table-sorting-example', component: TableSortingExample },
+      { path: 'vagon', component: VagonComponent },
     ]),
     BrowserAnimationsModule
   ],
