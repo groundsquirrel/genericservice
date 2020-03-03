@@ -4,28 +4,46 @@ export class Vagon {
     
     constructor(
         public _id?: ObjectId,
-        public name?: string,
-        public company?: string,
-        public os?: number,
-        public isNfc?: boolean,
-        public deliveryDate?: Date,
-        public screenType?: number,
-        public price?: number,
+        public model?: string,
+        public countryOwner?: string,
+        public vagonType?: number,
+        public isClosedFloor?: boolean,
+        public rentalEndDate?: Date,
+        public capacity?: number,
+        public tare?: number,
         public createdAt?: Date,
-        public imgUrl?: string) {
+        public imgUrl?: string,
+        public ownType?: number,
+        public axlesCount?: number,
+        public volume?: number,
+        public length?: number,
+        public ownerName?: string,
+        public tenant?: string,
+        public operator?: string,
+        public mileage?: number,
+        //Год выпуска вагона
+        public productionYear?: number,
+        // Дата последнего ремонта:
+        public lastRepairDate?: number,
+        // Дата следующего ремонта
+        public nextRepairDate?: Date,
+        // Дата обновления НСИ:
+        public nsiUpdateDate?: Date,
+        // Дата изменения:
+        public updatedAt?: Date) {
             createdAt = new Date();
         }
 
     static fromVagon(product: Vagon) {
         return new Vagon(
                 product._id,
-                product.name,
-                product.company,
-                product.os,
-                product.isNfc,
-                product.deliveryDate,
-                product.screenType,
-                product.price,
+                product.model,
+                product.countryOwner,
+                product.vagonType,
+                product.isClosedFloor,
+                product.rentalEndDate,
+                product.capacity,
+                product.tare,
                 product.createdAt,
                 product.imgUrl
         );
@@ -33,13 +51,13 @@ export class Vagon {
 
     fillObject(product: Vagon) {
         this._id = product._id;
-        this.name = product.name;
-        this.company =  product.company;
-        this.os = product.os;
-        this.isNfc = product.isNfc;
-        this.deliveryDate = product.deliveryDate;
-        this.screenType = product.screenType;
-        this.price = product.price;
+        this.model = product.model;
+        this.countryOwner =  product.countryOwner;
+        this.vagonType = product.vagonType;
+        this.isClosedFloor = product.isClosedFloor;
+        this.rentalEndDate = product.rentalEndDate;
+        this.capacity = product.capacity;
+        this.tare = product.tare;
         this.createdAt = product.createdAt;
         this.imgUrl = product.imgUrl;
     }
@@ -81,19 +99,19 @@ export class Vagon {
 
     
     get screenTypeName(): string {   
-        return this.getFirstName(this.screenTypes, this.screenType);
+        return this.getFirstName(this.screenTypes, this.capacity);
     }
 
     public get osName(): string {
-        return this.getFirstName(this.osList, this.os);
+        return this.getFirstName(this.osList, this.vagonType);
     }
 
     public get isNfcIcon(): string {
-        return this.getBoolIconName(this.isNfc);
+        return this.getBoolIconName(this.isClosedFloor);
     }
 
     public get deliveryDateText(): string {
-        return this.getFormatDate(this.deliveryDate);
+        return this.getFormatDate(this.rentalEndDate);
     }
 
     public get createdAtText(): string {
