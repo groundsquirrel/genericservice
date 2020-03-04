@@ -22,8 +22,9 @@ export class DataService {
         vagon.createdAt = new Date();
         return this.http.post(this.url, vagon, { observe: 'response' });
     }
-    updateVagon(product: Vagon) {
-        return this.http.put(this.url + '/' + product._id.$oid, product, { observe: 'response' });
+    updateVagon(vagon: Vagon) {
+        vagon.updatedAt = new Date();
+        return this.http.put(this.url + '/' + vagon._id.$oid, vagon, { observe: 'response' });
     }
     deleteVagon(id: ObjectId) {
         return this.http.delete(this.url + '/' + id.$oid, { observe: 'response' });

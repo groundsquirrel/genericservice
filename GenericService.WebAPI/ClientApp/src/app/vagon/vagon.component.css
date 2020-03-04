@@ -11,7 +11,7 @@ table {
     width: 13%;
   }
   
-  .product-card {
+  .vagon-card {
     max-width: 400px;
   }
   
@@ -28,13 +28,13 @@ table {
     -moz-appearance: textfield;
   }
 
-  .screen-type-radio-group {
+  .vagon-type-radio-group {
     display: flex;
     flex-direction: column;
     margin: 0px 0px 5px;
   }
   
-  .screen-type-radio-button {
+  .vagon-type-radio-button {
     margin: 0 10px;
   }
   

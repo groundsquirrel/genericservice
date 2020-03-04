@@ -4,31 +4,45 @@ export class Vagon {
     
     constructor(
         public _id?: ObjectId,
+        // Модель вагона
         public model?: string,
+        // Принадлежность
         public countryOwner?: string,
+        // Тип вагона
         public vagonType?: number,
+        // Глуходонный
         public isClosedFloor?: boolean,
+        // Дата окончания аренды
         public rentalEndDate?: Date,
+        // Грузоподъемность(т)
         public capacity?: number,
+        // Тара(т)
         public tare?: number,
+        // Дата создания
         public createdAt?: Date,
         public imgUrl?: string,
+        // Тип собственности
         public ownType?: number,
+        // Кол-во осей
         public axlesCount?: number,
+        // Объем кузова(м3):
         public volume?: number,
+        // Длина(м)
         public length?: number,
+        // Собственник
         public ownerName?: string,
+        // Арендатор
         public tenant?: string,
+        // Оператор
         public operator?: string,
+        // Пробег(км)
         public mileage?: number,
-        //Год выпуска вагона
+        // Год выпуска вагона
         public productionYear?: number,
-        // Дата последнего ремонта:
+        // Дата последнего ремонта
         public lastRepairDate?: number,
         // Дата следующего ремонта
         public nextRepairDate?: Date,
-        // Дата обновления НСИ:
-        public nsiUpdateDate?: Date,
         // Дата изменения:
         public updatedAt?: Date) {
             createdAt = new Date();
@@ -45,7 +59,23 @@ export class Vagon {
                 product.capacity,
                 product.tare,
                 product.createdAt,
-                product.imgUrl
+                product.imgUrl,
+                product.ownType,
+                product.axlesCount,
+                product.volume,
+                product.length,
+                product.ownerName,
+                product.tenant,
+                product.operator,
+                product.mileage,
+                //Год выпуска вагона
+                product.productionYear,
+                // Дата последнего ремонта:
+                product.lastRepairDate,
+                // Дата следующего ремонта
+                product.nextRepairDate,
+                // Дата изменения:
+                product.updatedAt
         );
     }
 
@@ -74,6 +104,22 @@ export class Vagon {
         {value: 1, viewValue: 'AMOLED'},
         {value: 2, viewValue: 'IPS'},
         {value: 3, viewValue: 'TFT'},
+    ];
+
+    vagonTypeList: simpleObj[] = [
+        {value: 0, viewValue: 'Не выбрано'},
+        {value: 1, viewValue: 'крытые'},
+        {value: 2, viewValue: 'платформы'},
+        {value: 3, viewValue: 'полувагоны'},
+        {value: 4, viewValue: 'цистерны'}
+    ];
+
+    ownTypeList: simpleObj[] = [
+        {value: 0, viewValue: 'Не выбрано'},
+        {value: 1, viewValue: 'Собственник'},
+        {value: 2, viewValue: 'Владелец'},
+        {value: 3, viewValue: 'Арендатор'},
+        {value: 4, viewValue: 'Оператор'}
     ];
 
     getFirstName(arr: simpleObj[], i: number): string {
