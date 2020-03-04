@@ -107,7 +107,7 @@ export class Vagon {
     ];
 
     vagonTypeList: simpleObj[] = [
-        {value: 0, viewValue: 'Не выбрано'},
+        {value: 0, viewValue: 'Другое'},
         {value: 1, viewValue: 'крытые'},
         {value: 2, viewValue: 'платформы'},
         {value: 3, viewValue: 'полувагоны'},
@@ -115,7 +115,7 @@ export class Vagon {
     ];
 
     ownTypeList: simpleObj[] = [
-        {value: 0, viewValue: 'Не выбрано'},
+        {value: 0, viewValue: 'Другое'},
         {value: 1, viewValue: 'Собственник'},
         {value: 2, viewValue: 'Владелец'},
         {value: 3, viewValue: 'Арендатор'},

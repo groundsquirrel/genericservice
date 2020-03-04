@@ -17,14 +17,25 @@ import { HttpResponse } from '@angular/common/http';
 export class VagonComponent implements OnInit {
   vagon_form: FormGroup;
     
-  name = new FormControl(null, Validators.required);
-  company = new FormControl(null, Validators.required);
-  screenType = new FormControl(0, [Validators.min(1), Validators.max(3)]);
-  os = new FormControl(0, [Validators.min(1), Validators.max(3)]);
-  deliveryDate = new FormControl(new Date(), Validators.required);
-  isNfc = new FormControl();
-  price = new FormControl(0, Validators.min(1));
-  imgUrl = new FormControl(null, Validators.required);
+  model = new FormControl(null, Validators.required);
+  countryOwner = new FormControl(null, Validators.required);
+  vagonType = new FormControl(null, [Validators.required]);
+  rentalEndDate = new FormControl(new Date(), Validators.required);
+  isClosedFloor = new FormControl();
+  capacityControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  tareControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  ownType = new FormControl(null, [Validators.required]);
+  axlesCountControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  volumeControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  lengthControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  ownerName = new FormControl(null, Validators.required);
+  tenantName = new FormControl();
+  operatorName = new FormControl();
+  mileageControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  productionYearControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  lastRepairDate = new FormControl(new Date(), Validators.required);
+  nextRepairDate = new FormControl(new Date(), Validators.required);
+  imgUrl = new FormControl();
 
   minDate: Date;
   maxDate: Date;
@@ -37,8 +48,8 @@ export class VagonComponent implements OnInit {
 
   constructor(private dataService: DataService, fb: FormBuilder) {
     this.buildForm(fb);
-    this.minDate = this.addDays(new Date(), -7);
-    this.maxDate = this.addDays(new Date(), 7);
+    //this.minDate = this.addDays(new Date(), -7);
+    //this.maxDate = this.addDays(new Date(), 7);
    }
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -46,13 +57,24 @@ export class VagonComponent implements OnInit {
 
   private buildForm(fb: FormBuilder) {
     this.vagon_form = fb.group({
-      name: this.name,
-      company: this.company,
-      screenType: this.screenType,
-      os: this.os,
-      deliveryDate: this.deliveryDate,
-      isNfc: this.isNfc,
-      price: this.price,
+      model: this.model,
+      countryOwner: this.countryOwner,
+      vagonType: this.vagonType,
+      rentalEndDate: this.rentalEndDate,
+      isClosedFloor: this.isClosedFloor,
+      capacityControl: this.capacityControl,
+      tareControl: this.tareControl,
+      ownType: this.ownType,
+      axlesCountControl: this.axlesCountControl,
+      volumeControl: this.volumeControl,
+      lengthControl: this.lengthControl,
+      ownerName: this.ownerName,
+      tenantName: this.tenantName,
+      operatorName: this.operatorName,
+      mileageControl: this.mileageControl,
+      productionYearControl: this.productionYearControl,
+      lastRepairDate: this.lastRepairDate,
+      nextRepairDate: this.nextRepairDate,
       imgUrl: this.imgUrl
     });
   }
