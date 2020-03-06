@@ -20,6 +20,7 @@ export class DataService {
  
     createVagon(vagon: Vagon) {
         vagon.createdAt = new Date();
+        vagon.updatedAt = new Date();
         return this.http.post(this.url, vagon, { observe: 'response' });
     }
     updateVagon(vagon: Vagon) {

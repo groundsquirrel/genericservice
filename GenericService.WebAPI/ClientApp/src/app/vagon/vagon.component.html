@@ -79,8 +79,12 @@
     </mat-card-header>
 
     <mat-card-content>
-      
-      <!-- <mat-form-field appearance="fill">
+
+      <!-- <mat-grid-list cols="2" rowHeight="1:2" gutterSize="30px">
+        <mat-grid-tile>
+      <mat-card class="vagon-card1">
+        <mat-card-content>
+      <mat-form-field appearance="fill">
         <mat-label>Модель</mat-label>
         <input type="text" matInput [formControl]="model" required>
       </mat-form-field>
@@ -90,15 +94,7 @@
         <input type="text" [formControl]="countryOwner" matInput required>
       </mat-form-field>
       
-      <label id="vagon-type-label">Тип вагона:</label>
-      <mat-radio-group
-        aria-labelledby="vagon-type-label"
-        class="vagon-type-radio-group"
-        [formControl]="vagonType">
-        <mat-radio-button class="vagon-type-radio-button" *ngFor="let vagonType of vagon.vagonTypeList" [value]="vagonType.value">
-          {{vagonType.viewValue}}
-        </mat-radio-button>
-      </mat-radio-group>
+      
 
       <mat-form-field appearance="fill">
         <mat-label>Дата окончания аренды</mat-label>
@@ -136,65 +132,87 @@
         <span matSuffix>&nbsp;шт</span>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Объем кузова(м3)</mat-label>
-        <input matInput type="number" placeholder="Введите значение" [formControl]="volumeControl" min="0" required>
-        <span matSuffix>&nbsp;м3</span>
-      </mat-form-field>
+      <label id="vagon-type-label">Тип вагона:</label>
+      <mat-radio-group
+        aria-labelledby="vagon-type-label"
+        class="vagon-type-radio-group"
+        [formControl]="vagonType">
+        <mat-radio-button class="vagon-type-radio-button" *ngFor="let vagonType of vagon.vagonTypeList" [value]="vagonType.value">
+          {{vagonType.viewValue}}
+        </mat-radio-button>
+      </mat-radio-group>
+      </mat-card-content>
+      </mat-card>
+      </mat-grid-tile>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Длина(м)</mat-label>
-        <input matInput type="number" placeholder="Введите значение" [formControl]="lengthControl" min="0" required>
-        <span matSuffix>&nbsp;м</span>
-      </mat-form-field>
+        <mat-grid-tile>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Собственник</mat-label>
-        <input type="text" matInput [formControl]="ownerName" required>
-      </mat-form-field>
+          <mat-card class="vagon-card1">
+          <mat-card-content>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Арендатор</mat-label>
-        <input type="text" matInput [formControl]="tenantName">
-      </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Объем кузова(м3)</mat-label>
+              <input matInput type="number" placeholder="Введите значение" [formControl]="volumeControl" min="0" required>
+              <span matSuffix>&nbsp;м3</span>
+            </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Оператор</mat-label>
-        <input type="text" matInput [formControl]="operatorName">
-      </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Длина(м)</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="lengthControl" min="0" required>
+            <span matSuffix>&nbsp;м</span>
+          </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Пробег(км)</mat-label>
-        <input matInput type="number" placeholder="Введите значение" [formControl]="mileageControl" min="0" required>
-        <span matSuffix>&nbsp;км</span>
-      </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Собственник</mat-label>
+            <input type="text" matInput [formControl]="ownerName" required>
+          </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Год выпуска</mat-label>
-        <input matInput type="number" placeholder="Введите значение" [formControl]="productionYearControl" min="0" required>
-        <span matSuffix>&nbsp;год</span>
-      </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Арендатор</mat-label>
+            <input type="text" matInput [formControl]="tenantName">
+          </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Дата последнего ремонта</mat-label>
-        <input matInput [matDatepicker]="lastRepairDateControl" [min]="minDate" [max]="maxDate" [formControl]="lastRepairDate" required>
-        <mat-datepicker-toggle matSuffix [for]="lastRepairDateControl"></mat-datepicker-toggle>
-        <mat-datepicker #lastRepairDateControl></mat-datepicker>
-      </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Оператор</mat-label>
+            <input type="text" matInput [formControl]="operatorName">
+          </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Дата следующего ремонта</mat-label>
-        <input matInput [matDatepicker]="nextRepairDateControl" [min]="minDate" [max]="maxDate" [formControl]="nextRepairDate" required>
-        <mat-datepicker-toggle matSuffix [for]="nextRepairDateControl"></mat-datepicker-toggle>
-        <mat-datepicker #nextRepairDateControl></mat-datepicker>
-      </mat-form-field>
-      
-      <mat-form-field appearance="fill">
-        <mat-label>Ссылка на изображение</mat-label>
-        <input type="text" matInput [formControl]="imgUrl">
-      </mat-form-field> -->
+          <mat-form-field appearance="fill">
+            <mat-label>Пробег(км)</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="mileageControl" min="0" required>
+            <span matSuffix>&nbsp;км</span>
+          </mat-form-field>
 
-      <mat-grid-list cols="2" rowHeight="5:1">
+          <mat-form-field appearance="fill">
+            <mat-label>Год выпуска</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="productionYearControl" min="0" required>
+            <span matSuffix>&nbsp;год</span>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Дата последнего ремонта</mat-label>
+            <input matInput [matDatepicker]="lastRepairDateControl" [min]="minDate" [max]="maxDate" [formControl]="lastRepairDate" required>
+            <mat-datepicker-toggle matSuffix [for]="lastRepairDateControl"></mat-datepicker-toggle>
+            <mat-datepicker #lastRepairDateControl></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Дата следующего ремонта</mat-label>
+            <input matInput [matDatepicker]="nextRepairDateControl" [min]="minDate" [max]="maxDate" [formControl]="nextRepairDate" required>
+            <mat-datepicker-toggle matSuffix [for]="nextRepairDateControl"></mat-datepicker-toggle>
+            <mat-datepicker #nextRepairDateControl></mat-datepicker>
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Ссылка на изображение</mat-label>
+            <input type="text" matInput [formControl]="imgUrl">
+          </mat-form-field>
+          </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list> -->
+
+      <mat-grid-list cols="2" rowHeight="60px" gutterSize="15px">
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Модель</mat-label>
@@ -318,15 +336,17 @@
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>
-      <label id="vagon-type-label">Тип вагона:</label>
-      <mat-radio-group
-        aria-labelledby="vagon-type-label"
-        class="vagon-type-radio-group"
-        [formControl]="vagonType">
-        <mat-radio-button class="vagon-type-radio-button" *ngFor="let vagonType of vagon.vagonTypeList" [value]="vagonType.value">
-          {{vagonType.viewValue}}
-        </mat-radio-button>
-      </mat-radio-group>
+      <div class="vagon-type">
+        <label id="vagon-type-label">Тип вагона:</label>
+        <mat-radio-group
+          aria-labelledby="vagon-type-label"
+          class="vagon-type-radio-group"
+          [formControl]="vagonType">
+          <mat-radio-button class="vagon-type-radio-button" *ngFor="let vagonType of vagon.vagonTypeList" [value]="vagonType.value">
+            {{vagonType.viewValue}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
 
     </mat-card-content>
     

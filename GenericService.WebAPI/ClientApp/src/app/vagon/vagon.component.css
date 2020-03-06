@@ -12,7 +12,7 @@ table {
   }
   
   .vagon-card {
-    max-width: 800px;
+    max-width: 900px;
   }
   
   .price-right-align {
@@ -36,6 +36,11 @@ table {
   
   .vagon-type-radio-button {
     margin: 0 10px;
+  }
+
+  .vagon-type {
+    margin-top: 15px;
+    margin-left: 50px;
   }
   
   .checkbox-margin {
