@@ -22,17 +22,17 @@ export class VagonComponent implements OnInit {
   vagonType = new FormControl(null, [Validators.required]);
   rentalEndDate = new FormControl(new Date(), Validators.required);
   isClosedFloor = new FormControl();
-  capacityControl = new FormControl(0, [Validators.required, Validators.min(0)]);
-  tareControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  capacity = new FormControl(0, [Validators.required, Validators.min(0)]);
+  tare = new FormControl(0, [Validators.required, Validators.min(0)]);
   ownType = new FormControl(null, [Validators.required]);
-  axlesCountControl = new FormControl(0, [Validators.required, Validators.min(0)]);
-  volumeControl = new FormControl(0, [Validators.required, Validators.min(0)]);
-  lengthControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  axlesCount = new FormControl(0, [Validators.required, Validators.min(0)]);
+  volume = new FormControl(0, [Validators.required, Validators.min(0)]);
+  length = new FormControl(0, [Validators.required, Validators.min(0)]);
   ownerName = new FormControl(null, Validators.required);
   tenantName = new FormControl();
   operatorName = new FormControl();
-  mileageControl = new FormControl(0, [Validators.required, Validators.min(0)]);
-  productionYearControl = new FormControl(0, [Validators.required, Validators.min(0)]);
+  mileage = new FormControl(0, [Validators.required, Validators.min(0)]);
+  productionYear = new FormControl(0, [Validators.required, Validators.min(0)]);
   lastRepairDate = new FormControl(new Date(), Validators.required);
   nextRepairDate = new FormControl(new Date(), Validators.required);
   imgUrl = new FormControl();
@@ -43,7 +43,7 @@ export class VagonComponent implements OnInit {
   vagon: Vagon = new Vagon();   // изменяемый объект
   tableMode: boolean = true;          // табличный режим
 
-  displayedColumns: string[] = ['name', 'company', 'screenType', 'os', 'deliveryDate', 'isNfc', 'price', 'createdAt'];
+  displayedColumns: string[] = ['model', 'countryOwner', 'screenType', 'os', 'deliveryDate', 'isNfc', 'price', 'createdAt'];
   dataSource: MatTableDataSource<Vagon>; // массив товаров
 
   constructor(private dataService: DataService, fb: FormBuilder) {
@@ -62,17 +62,17 @@ export class VagonComponent implements OnInit {
       vagonType: this.vagonType,
       rentalEndDate: this.rentalEndDate,
       isClosedFloor: this.isClosedFloor,
-      capacityControl: this.capacityControl,
-      tareControl: this.tareControl,
+      capacity: this.capacity,
+      tare: this.tare,
       ownType: this.ownType,
-      axlesCountControl: this.axlesCountControl,
-      volumeControl: this.volumeControl,
-      lengthControl: this.lengthControl,
+      axlesCount: this.axlesCount,
+      volume: this.volume,
+      length: this.length,
       ownerName: this.ownerName,
       tenantName: this.tenantName,
       operatorName: this.operatorName,
-      mileageControl: this.mileageControl,
-      productionYearControl: this.productionYearControl,
+      mileage: this.mileage,
+      productionYear: this.productionYear,
       lastRepairDate: this.lastRepairDate,
       nextRepairDate: this.nextRepairDate,
       imgUrl: this.imgUrl
@@ -88,7 +88,6 @@ export class VagonComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.info('ngOnInit');
     this.loadVagons();    // загрузка данных при старте компонента  
   }
 

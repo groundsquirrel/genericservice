@@ -144,8 +144,8 @@ export class Vagon {
     }
 
     
-    get screenTypeName(): string {   
-        return this.getFirstName(this.screenTypes, this.capacity);
+    get vagonTypeName(): string {   
+        return this.getFirstName(this.vagonTypeList, this.vagonType);
     }
 
     public get osName(): string {

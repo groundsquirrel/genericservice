@@ -25,6 +25,31 @@
       </ng-container>
 
       <ng-container matColumnDef="screenType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Тип вагона </th>
+        <td mat-cell *matCellDef="let element"> {{element.vagonTypeName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isClosedFloor">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Глуходонный </th>
+        <td mat-cell *matCellDef="let element">
+          <!-- <mat-icon aria-label="Example home icon">{{element.isNfcIcon}}</mat-icon> -->
+          <!-- <mat-checkbox class="checkbox-margin" color="primary" [formControl]="isClosedFloor">Глуходонный</mat-checkbox> -->
+          <mat-checkbox
+            class="checkbox-margin"
+            [(ngModel)]="isClosedFloor"
+            [disabled]="disabled">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Дата окончания аренды </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.rentalEndDate}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="screenType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Тип экрана </th>
         <td mat-cell *matCellDef="let element"> {{element.screenTypeName}} </td>
       </ng-container>
@@ -34,19 +59,9 @@
         <td mat-cell *matCellDef="let element"> {{element.osName}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="deliveryDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Дата поставки </th>
-        <td mat-cell *matCellDef="let element">
-          {{element.deliveryDateText}}
-        </td>
-      </ng-container>
+      
 
-      <ng-container matColumnDef="isNfc">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> NFC </th>
-        <td mat-cell *matCellDef="let element">
-          <mat-icon aria-label="Example home icon">{{element.isNfcIcon}}</mat-icon>
-        </td>
-      </ng-container>
+      
 
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Цена </th>
@@ -106,14 +121,14 @@
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Грузоподъемность(т)</mat-label>
-            <input matInput type="number" placeholder="Введите значение" [formControl]="capacityControl" min="0" required>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="capacity" min="0" required>
             <span matSuffix>&nbsp; т</span>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Тара(т)</mat-label>
-            <input matInput type="number" placeholder="Введите значение" [formControl]="tareControl" min="0" required>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="tare" min="0" required>
             <span matSuffix>&nbsp;т</span>
           </mat-form-field>
         </mat-grid-tile>
@@ -130,21 +145,21 @@
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Кол-во осей</mat-label>
-            <input matInput type="number" placeholder="Введите значение" [formControl]="axlesCountControl" min="0" required>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="axlesCount" min="0" required>
             <span matSuffix>&nbsp;шт</span>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Объем кузова(м3)</mat-label>
-            <input matInput type="number" placeholder="Введите значение" [formControl]="volumeControl" min="0" required>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="volume" min="0" required>
             <span matSuffix>&nbsp;м3</span>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Длина(м)</mat-label>
-            <input matInput type="number" placeholder="Введите значение" [formControl]="lengthControl" min="0" required>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="length" min="0" required>
             <span matSuffix>&nbsp;м</span>
           </mat-form-field>    
         </mat-grid-tile>
@@ -169,14 +184,14 @@
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Пробег(км)</mat-label>
-            <input matInput type="number" placeholder="Введите значение" [formControl]="mileageControl" min="0" required>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="mileage" min="0" required>
             <span matSuffix>&nbsp;км</span>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Год выпуска</mat-label>
-            <input matInput type="number" placeholder="Введите значение" [formControl]="productionYearControl" min="0" required>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="productionYear" min="0" required>
             <span matSuffix>&nbsp;год</span>
           </mat-form-field>
         </mat-grid-tile>
