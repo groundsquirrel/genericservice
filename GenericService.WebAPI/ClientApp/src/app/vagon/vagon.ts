@@ -148,15 +148,15 @@ export class Vagon {
         return this.getFirstName(this.vagonTypeList, this.vagonType);
     }
 
-    public get osName(): string {
-        return this.getFirstName(this.osList, this.vagonType);
+    public get ownTypeName(): string {
+        return this.getFirstName(this.ownTypeList, this.ownType);
     }
 
     public get isNfcIcon(): string {
         return this.getBoolIconName(this.isClosedFloor);
     }
 
-    public get deliveryDateText(): string {
+    public get rentalEndDateText(): string {
         return this.getFormatDate(this.rentalEndDate);
     }
 

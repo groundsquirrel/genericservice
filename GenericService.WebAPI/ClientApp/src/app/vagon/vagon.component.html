@@ -24,48 +24,62 @@
         <td mat-cell *matCellDef="let element"> {{element.countryOwner}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="screenType">
+      <ng-container matColumnDef="vagonType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Тип вагона </th>
         <td mat-cell *matCellDef="let element"> {{element.vagonTypeName}} </td>
       </ng-container>
 
       <ng-container matColumnDef="isClosedFloor">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Глуходонный </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Глухо-<br/>донный </th>
         <td mat-cell *matCellDef="let element">
           <!-- <mat-icon aria-label="Example home icon">{{element.isNfcIcon}}</mat-icon> -->
           <!-- <mat-checkbox class="checkbox-margin" color="primary" [formControl]="isClosedFloor">Глуходонный</mat-checkbox> -->
           <mat-checkbox
             class="checkbox-margin"
-            [(ngModel)]="isClosedFloor"
-            [disabled]="disabled">
+            [ngModel]="element.isClosedFloor"
+            [disabled]="true">
           </mat-checkbox>
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="deliveryDate">
+      <ng-container matColumnDef="rentalEndDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Дата окончания аренды </th>
         <td mat-cell *matCellDef="let element">
-          {{element.rentalEndDate}}
+          {{element.rentalEndDateText}}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="screenType">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Тип экрана </th>
-        <td mat-cell *matCellDef="let element"> {{element.screenTypeName}} </td>
+      <ng-container matColumnDef="capacity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Грузоподъ-<br/>емность(т) </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.capacity}}
+        </td>
       </ng-container>
 
-      <ng-container matColumnDef="os">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> OS </th>
-        <td mat-cell *matCellDef="let element"> {{element.osName}} </td>
+      <ng-container matColumnDef="tare">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Тара(т) </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.tare}}
+        </td>
       </ng-container>
 
-      
+      <ng-container matColumnDef="ownType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Тип собственности </th>
+        <td mat-cell *matCellDef="let element"> {{element.ownTypeName}} </td>
+      </ng-container>
 
-      
+      <ng-container matColumnDef="axlesCount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Кол-во осей </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.axlesCount}}
+        </td>
+      </ng-container>
 
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Цена </th>
-        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      <ng-container matColumnDef="volume">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Объем кузова(м3) </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.volume}}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="createdAt">

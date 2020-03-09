@@ -8,14 +8,14 @@ table {
   }
   
   td, th {
-    width: 13%;
+     width: 9%; 
   }
   
   .vagon-card {
     max-width: 900px;
   }
   
-  .price-right-align {
+  .right-align {
     text-align: right;
   }
   
