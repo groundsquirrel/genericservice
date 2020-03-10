@@ -16,7 +16,8 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class VagonComponent implements OnInit {
   vagon_form: FormGroup;
-    
+  
+  number = new FormControl(null, Validators.required);
   model = new FormControl(null, Validators.required);
   countryOwner = new FormControl(null, Validators.required);
   vagonType = new FormControl(null, [Validators.required]);
@@ -43,7 +44,7 @@ export class VagonComponent implements OnInit {
   vagon: Vagon = new Vagon();   // изменяемый объект
   tableMode: boolean = true;          // табличный режим
 
-  displayedColumns: string[] = ['model', 'countryOwner', 'vagonType', 'isClosedFloor', 'rentalEndDate', 'capacity', 'tare', 'ownType', 'axlesCount', 'volume', 'createdAt'];
+  displayedColumns: string[] = ['number', 'model', 'countryOwner', 'vagonType', 'isClosedFloor', 'rentalEndDate', 'capacity', 'tare', 'ownType', 'axlesCount', 'volume', 'createdAt'];
   dataSource: MatTableDataSource<Vagon>; // массив товаров
 
   constructor(private dataService: DataService, fb: FormBuilder) {
@@ -57,6 +58,7 @@ export class VagonComponent implements OnInit {
 
   private buildForm(fb: FormBuilder) {
     this.vagon_form = fb.group({
+      number: this.number,
       model: this.model,
       countryOwner: this.countryOwner,
       vagonType: this.vagonType,

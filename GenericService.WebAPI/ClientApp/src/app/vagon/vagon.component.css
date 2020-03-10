@@ -8,7 +8,7 @@ table {
   }
   
   td, th {
-     width: 9%; 
+     width: 8%; 
   }
   
   .vagon-card {
@@ -69,4 +69,9 @@ table {
 
   .mat-column-os {
     width: 10%;
+  }
+
+  .header-image {
+    background-image: url('https://previews.123rf.com/images/rastudio/rastudio1601/rastudio160103582/51362288-cargo-wagon-line-icon-for-web-mobile-and-infographics-vector-grey-thin-line-icon-in-the-circle-isola.jpg');
+    background-size: cover;
   }

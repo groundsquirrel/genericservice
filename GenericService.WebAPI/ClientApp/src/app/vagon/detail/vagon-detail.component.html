@@ -1,14 +1,20 @@
-<p><a routerLink="/vagon" class="nav-link">К списку моделей</a></p>
+<p><a routerLink="/vagon" class="nav-link">К списку вагонов</a></p>
 
 <mat-card class="product-card" *ngIf="loaded">
     <mat-card-header>
       <div mat-card-avatar class="header-image"></div>
-      <mat-card-title>Модель </mat-card-title>
+      <mat-card-title>Вагон {{vagon.number}}</mat-card-title>
       <mat-card-subtitle>{{vagon.model}} {{vagon.vagonTypeName}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="{{vagon.imgUrl}}" alt="Photo of a {{vagon.company}} {{vagon.name}}">
     <mat-card-content>
       <mat-grid-list cols="2" rowHeight="35px" gutterSize="10px">
+        <mat-grid-tile>
+          Номер:
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{vagon.number}}
+      </mat-grid-tile>
         <mat-grid-tile>
             Модель:
         </mat-grid-tile>
@@ -44,13 +50,13 @@
           {{vagon.rentalEndDateText}}
         </mat-grid-tile>
         <mat-grid-tile>
-          Грузоподъемность(т):
+          Грузоподъемность (т):
         </mat-grid-tile>
         <mat-grid-tile>
           {{vagon.capacity}}
         </mat-grid-tile>
         <mat-grid-tile>
-          Тара(т):
+          Тара (т):
         </mat-grid-tile>
         <mat-grid-tile>
           {{vagon.tare}}
@@ -68,13 +74,13 @@
           {{vagon.axlesCount}}
         </mat-grid-tile>
         <mat-grid-tile>
-          Объем кузова(м3):
+          Объем кузова (м3):
         </mat-grid-tile>
         <mat-grid-tile>
           {{vagon.volume}}
         </mat-grid-tile>
         <mat-grid-tile>
-          Длина(м):
+          Длина (м):
         </mat-grid-tile>
         <mat-grid-tile>
           {{vagon.length}}
@@ -98,7 +104,7 @@
           {{vagon.operatorName}}
         </mat-grid-tile>
         <mat-grid-tile>
-          Пробег(км):
+          Пробег (км):
         </mat-grid-tile>
         <mat-grid-tile>
           {{vagon.mileage}}
@@ -131,5 +137,10 @@
       </mat-grid-list>
       
     </mat-card-content>
+    <mat-card-actions>
+      <div class="mat-card-actions-div">
+          <a mat-stroked-button routerLink="/vagon"><< Назад</a>
+      </div>
+    </mat-card-actions>
    
 </mat-card>  

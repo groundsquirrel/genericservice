@@ -1,9 +1,8 @@
 .product-card {
-    max-width: 500px;
+    max-width: 600px;
   }
 
   .header-image {
-    /* background-image: url('https://previews.123rf.com/images/rastudio/rastudio1512/rastudio151201028/49278551-cargo-wagon-line-icon-for-web-mobile-and-infographics-vector-white-icon-isolated-on-red-background-.jpg'); */
     background-image: url('https://previews.123rf.com/images/rastudio/rastudio1601/rastudio160103582/51362288-cargo-wagon-line-icon-for-web-mobile-and-infographics-vector-grey-thin-line-icon-in-the-circle-isola.jpg');
     background-size: cover;
   }

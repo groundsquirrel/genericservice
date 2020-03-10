@@ -44,7 +44,9 @@ export class Vagon {
         // Дата следующего ремонта
         public nextRepairDate?: Date,
         // Дата изменения:
-        public updatedAt?: Date) {
+        public updatedAt?: Date,
+        // Номер вагона
+        public number?: string) {
             createdAt = new Date();
         }
 
@@ -75,43 +77,18 @@ export class Vagon {
                 // Дата следующего ремонта
                 product.nextRepairDate,
                 // Дата изменения:
-                product.updatedAt
+                product.updatedAt,
+                product.number
         );
     }
-
-    fillObject(product: Vagon) {
-        this._id = product._id;
-        this.model = product.model;
-        this.countryOwner =  product.countryOwner;
-        this.vagonType = product.vagonType;
-        this.isClosedFloor = product.isClosedFloor;
-        this.rentalEndDate = product.rentalEndDate;
-        this.capacity = product.capacity;
-        this.tare = product.tare;
-        this.createdAt = product.createdAt;
-        this.imgUrl = product.imgUrl;
-    }
-         
-    osList: simpleObj[] = [
-        {value: 0, viewValue: 'Не выбрано'},
-        {value: 1, viewValue: 'Android'},
-        {value: 2, viewValue: 'IOS'},
-        {value: 3, viewValue: 'Другое'}
-    ];
-
-    screenTypes: simpleObj[] = [
-        {value: 0, viewValue: 'Не выбрано'},
-        {value: 1, viewValue: 'AMOLED'},
-        {value: 2, viewValue: 'IPS'},
-        {value: 3, viewValue: 'TFT'},
-    ];
-
+  
     vagonTypeList: simpleObj[] = [
         {value: 0, viewValue: 'Другое'},
-        {value: 1, viewValue: 'крытые'},
-        {value: 2, viewValue: 'платформы'},
-        {value: 3, viewValue: 'полувагоны'},
-        {value: 4, viewValue: 'цистерны'}
+        {value: 1, viewValue: 'Крытый'},
+        {value: 2, viewValue: 'Платформа'},
+        {value: 3, viewValue: 'Полувагон'},
+        {value: 4, viewValue: 'Полувагон инновационный'},
+        {value: 5, viewValue: 'Цистерна'}
     ];
 
     ownTypeList: simpleObj[] = [
@@ -150,10 +127,6 @@ export class Vagon {
 
     public get ownTypeName(): string {
         return this.getFirstName(this.ownTypeList, this.ownType);
-    }
-
-    public get isNfcIcon(): string {
-        return this.getBoolIconName(this.isClosedFloor);
     }
 
     public get rentalEndDateText(): string {
