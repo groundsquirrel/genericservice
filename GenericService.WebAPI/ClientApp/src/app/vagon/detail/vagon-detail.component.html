@@ -1,8 +1,8 @@
 <p><a routerLink="/vagon" class="nav-link">К списку моделей</a></p>
 
-<mat-card class="vagon-card" *ngIf="loaded">
+<mat-card class="product-card" *ngIf="loaded">
     <mat-card-header>
-      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <div mat-card-avatar class="header-image"></div>
       <mat-card-title>Модель </mat-card-title>
       <mat-card-subtitle>{{vagon.model}} {{vagon.vagonTypeName}}</mat-card-subtitle>
     </mat-card-header>
