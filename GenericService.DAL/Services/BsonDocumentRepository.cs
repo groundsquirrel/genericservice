@@ -16,6 +16,10 @@ namespace GenericService.DAL.Services
         
         public BsonDocumentRepository(IMongoDbContext mongoDbContext, string collectionName) : base(mongoDbContext, collectionName)
         {
+            if (!collection.Find(new BsonDocument()).Any())
+                collection.InsertOne(
+                    BsonDocument.Parse("{\"_id\":{\"$oid\":\"5e67adff3fe09a33c042d776\"},\"model\":\"12-4106\",\"countryOwner\":\"РОССИЯ\",\"vagonType\":{\"$numberInt\":\"3\"},\"rentalEndDate\":\"2023-01-30T21:00:00Z\",\"isClosedFloor\":null,\"capacity\":{\"$numberInt\":\"70\"},\"tare\":{\"$numberDouble\":\"23.6\"},\"ownType\":{\"$numberInt\":\"1\"},\"axlesCount\":{\"$numberInt\":\"4\"},\"volume\":{\"$numberInt\":\"78\"},\"length\":{\"$numberDouble\":\"13.92\"},\"ownerName\":\"ООО \\\"ВЕСТКОАЛ Транс\\\"\",\"tenantName\":\"Акционерное общество \\\"СУЭК\\\"\",\"operatorName\":null,\"mileage\":{\"$numberInt\":\"61923\"},\"productionYear\":{\"$numberInt\":\"2010\"},\"lastRepairDate\":\"2019-11-13T21:00:00Z\",\"nextRepairDate\":\"2022-03-28T21:00:00Z\",\"imgUrl\":\"http://dvmash.biz/images/stories/poluvagoni/12-4106_ft.jpg\",\"createdAt\":\"2020-03-10T15:10:55.034Z\",\"updatedAt\":\"2020-03-10T15:10:55.034Z\"}")
+                );
         }
 
         public override JObject Create(JObject item)

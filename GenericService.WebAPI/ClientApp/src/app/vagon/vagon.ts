@@ -32,15 +32,15 @@ export class Vagon {
         // Собственник
         public ownerName?: string,
         // Арендатор
-        public tenant?: string,
+        public tenantName?: string,
         // Оператор
-        public operator?: string,
+        public operatorName?: string,
         // Пробег(км)
         public mileage?: number,
         // Год выпуска вагона
         public productionYear?: number,
         // Дата последнего ремонта
-        public lastRepairDate?: number,
+        public lastRepairDate?: Date,
         // Дата следующего ремонта
         public nextRepairDate?: Date,
         // Дата изменения:
@@ -65,8 +65,8 @@ export class Vagon {
                 product.volume,
                 product.length,
                 product.ownerName,
-                product.tenant,
-                product.operator,
+                product.tenantName,
+                product.operatorName,
                 product.mileage,
                 //Год выпуска вагона
                 product.productionYear,
@@ -158,6 +158,14 @@ export class Vagon {
 
     public get rentalEndDateText(): string {
         return this.getFormatDate(this.rentalEndDate);
+    }
+
+    public get lastRepairDateText(): string {
+        return this.getFormatDate(this.lastRepairDate);
+    }
+
+    public get nextRepairDateText(): string {
+        return this.getFormatDate(this.nextRepairDate);
     }
 
     public get createdAtText(): string {

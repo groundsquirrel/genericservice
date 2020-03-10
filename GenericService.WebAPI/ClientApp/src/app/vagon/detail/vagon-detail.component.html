@@ -8,33 +8,125 @@
     </mat-card-header>
     <img mat-card-image src="{{vagon.imgUrl}}" alt="Photo of a {{vagon.company}} {{vagon.name}}">
     <mat-card-content>
-      <mat-grid-list cols="2">
-        <mat-grid-tile><mat-list role="list">
-            <mat-list-item role="listitem">Модель:</mat-list-item>
-            <mat-list-item role="listitem">Принадлежность:</mat-list-item>
-            <mat-list-item role="listitem">Тип вагона:</mat-list-item>
-            <mat-list-item role="listitem">Глуходонный:</mat-list-item>
-            <mat-list-item role="listitem">Дата окончания аренды:</mat-list-item>
-            <mat-list-item role="listitem">Грузоподъемность(т):</mat-list-item>
-            <mat-list-item role="listitem">Тара(т):</mat-list-item>
-          </mat-list></mat-grid-tile>
-        <mat-grid-tile><mat-list role="list">
-            <mat-list-item role="listitem">{{vagon.model}}</mat-list-item>
-            <mat-list-item role="listitem">{{vagon.countryOwner}}</mat-list-item>
-            <mat-list-item role="listitem">{{vagon.vagonTypeName}}</mat-list-item>
-            <mat-list-item role="listitem">
-              <!-- <mat-icon aria-label="Example home icon">{{vagon.isNfcIcon}}</mat-icon> -->
-              <mat-checkbox
+      <mat-grid-list cols="2" rowHeight="35px" gutterSize="10px">
+        <mat-grid-tile>
+            Модель:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.model}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Принадлежность:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.countryOwner}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Тип вагона:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.vagonTypeName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Глуходонный:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-checkbox
                 class="checkbox-margin"
                 [ngModel]="vagon.isClosedFloor"
                 [disabled]="true">
               </mat-checkbox>
-            </mat-list-item>
-            <mat-list-item role="listitem">{{vagon.rentalEndDateText}}</mat-list-item>
-            <mat-list-item role="listitem">{{vagon.capacity}}</mat-list-item>
-            
-            <mat-list-item role="listitem">{{vagon.tare}}</mat-list-item>
-          </mat-list></mat-grid-tile>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Дата окончания аренды:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.rentalEndDateText}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Грузоподъемность(т):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.capacity}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Тара(т):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.tare}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Тип собственности:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.ownTypeName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Кол-во осей:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.axlesCount}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Объем кузова(м3):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.volume}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Длина(м):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.length}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Собственник:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.ownerName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Арендатор:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.tenantName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Оператор:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.operatorName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Пробег(км):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.mileage}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Год выпуска:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.productionYear}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Дата последнего ремонта:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.lastRepairDateText}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Дата следующего ремонта:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.nextRepairDateText}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Дата создания:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.createdAtText}}
+        </mat-grid-tile>
         
       </mat-grid-list>
       
