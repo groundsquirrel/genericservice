@@ -4,28 +4,36 @@
     <mat-card-header>
       <!-- <div mat-card-avatar class="example-header-image"></div> -->
       <mat-card-title>Модель </mat-card-title>
-      <mat-card-subtitle>{{vagon.company}} {{vagon.name}}</mat-card-subtitle>
+      <mat-card-subtitle>{{vagon.model}} {{vagon.vagonTypeName}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="{{vagon.imgUrl}}" alt="Photo of a {{vagon.company}} {{vagon.name}}">
     <mat-card-content>
       <mat-grid-list cols="2">
         <mat-grid-tile><mat-list role="list">
             <mat-list-item role="listitem">Модель:</mat-list-item>
-            <mat-list-item role="listitem">Производитель:</mat-list-item>
-            <mat-list-item role="listitem">Тип экрана:</mat-list-item>
-            <mat-list-item role="listitem">OS:</mat-list-item>
-            <mat-list-item role="listitem">Дата поставки:</mat-list-item>
-            <mat-list-item role="listitem">NFC:</mat-list-item>
-            <mat-list-item role="listitem">Цена:</mat-list-item>
+            <mat-list-item role="listitem">Принадлежность:</mat-list-item>
+            <mat-list-item role="listitem">Тип вагона:</mat-list-item>
+            <mat-list-item role="listitem">Глуходонный:</mat-list-item>
+            <mat-list-item role="listitem">Дата окончания аренды:</mat-list-item>
+            <mat-list-item role="listitem">Грузоподъемность(т):</mat-list-item>
+            <mat-list-item role="listitem">Тара(т):</mat-list-item>
           </mat-list></mat-grid-tile>
         <mat-grid-tile><mat-list role="list">
-            <mat-list-item role="listitem">{{vagon.name}}</mat-list-item>
-            <mat-list-item role="listitem">{{vagon.company}}</mat-list-item>
-            <mat-list-item role="listitem">{{vagon.screenTypeName}}</mat-list-item>
-            <mat-list-item role="listitem">{{vagon.osName}}</mat-list-item>
-            <mat-list-item role="listitem">{{vagon.deliveryDateText}}</mat-list-item>
-            <mat-list-item role="listitem"><mat-icon aria-label="Example home icon">{{vagon.isNfcIcon}}</mat-icon></mat-list-item>
-            <mat-list-item role="listitem">{{vagon.price}}</mat-list-item>
+            <mat-list-item role="listitem">{{vagon.model}}</mat-list-item>
+            <mat-list-item role="listitem">{{vagon.countryOwner}}</mat-list-item>
+            <mat-list-item role="listitem">{{vagon.vagonTypeName}}</mat-list-item>
+            <mat-list-item role="listitem">
+              <!-- <mat-icon aria-label="Example home icon">{{vagon.isNfcIcon}}</mat-icon> -->
+              <mat-checkbox
+                class="checkbox-margin"
+                [ngModel]="vagon.isClosedFloor"
+                [disabled]="true">
+              </mat-checkbox>
+            </mat-list-item>
+            <mat-list-item role="listitem">{{vagon.rentalEndDateText}}</mat-list-item>
+            <mat-list-item role="listitem">{{vagon.capacity}}</mat-list-item>
+            
+            <mat-list-item role="listitem">{{vagon.tare}}</mat-list-item>
           </mat-list></mat-grid-tile>
         
       </mat-grid-list>
