@@ -8,7 +8,7 @@ table {
   }
   
   td, th {
-     width: 8%; 
+     width: 7%; 
   }
   
   .vagon-card {
@@ -55,23 +55,52 @@ table {
     margin-bottom: 0px;
   }
 
-  .mat-column-isNfc {
+  .mat-column-number {
+    width: 9%;
+  }
+
+  .mat-column-isClosedFloor {
     width: 5%;
   }
 
-  .mat-column-name {
-    width: 20%;
+  .mat-column-capacity {
+    width: 5%;
+    text-align: center;
   }
 
-  .mat-column-screenType {
-    width: 7%;
+  .mat-column-tare {
+    width: 5%;
   }
 
-  .mat-column-os {
-    width: 10%;
+  .mat-column-axlesCount {
+    width: 5%;
+    text-align: center;
+  }
+
+  .mat-column-volume {
+    width: 5%;
+    text-align: center;
+  }
+
+  .mat-column-actions {
+    width: 3%;
   }
 
   .header-image {
     background-image: url('https://previews.123rf.com/images/rastudio/rastudio1601/rastudio160103582/51362288-cargo-wagon-line-icon-for-web-mobile-and-infographics-vector-grey-thin-line-icon-in-the-circle-isola.jpg');
     background-size: cover;
+  }
+
+  .table-container {
+    /* height: 600px; */
+    /* width: 1200px; */
+    overflow: auto;
+  }
+
+  .mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  .mat-table-sticky:last-child {
+    border-left: 1px solid #e0e0e0;
   }

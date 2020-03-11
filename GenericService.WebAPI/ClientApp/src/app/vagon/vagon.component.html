@@ -1,7 +1,10 @@
-<h4 id="tableLabel">Паспорта вагонов</h4>
+<h5 id="tableLabel">Паспорта вагонов</h5>
 
 <div>
-  <button mat-raised-button color="primary" (click)="add()">Добавить</button>
+  <button mat-raised-button color="primary" (click)="add()">
+    <mat-icon>add</mat-icon>
+    <span>&nbsp;Добавить</span>
+  </button>
 </div>
 
 <div *ngIf="tableMode; else create">
@@ -9,12 +12,12 @@
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фильтр">
   </mat-form-field>
 
-  <div class="mat-elevation-z8">
+  <div class="table-container mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="number">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Номер </th>
         <td mat-cell *matCellDef="let element">
-          <a [routerLink]="[element._id.$oid]" class="nav-link">{{element.number}}</a>  
+          <a [routerLink]="[element._id.$oid]">{{element.number}}</a>  
         </td>
       </ng-container>
 
@@ -26,7 +29,7 @@
       </ng-container>
 
       <ng-container matColumnDef="countryOwner">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Принадлежность </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Принад-<br/>лежность </th>
         <td mat-cell *matCellDef="let element"> {{element.countryOwner}} </td>
       </ng-container>
 
@@ -94,6 +97,25 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon color="primary">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item disabled>
+              <mat-icon color="primary">edit</mat-icon>
+              <span>&nbsp;Изменить</span>
+            </button>
+            <button mat-menu-item (click)="delete(element)">
+              <mat-icon color="primary">delete</mat-icon>
+              <span>&nbsp;Удалить</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
@@ -106,7 +128,7 @@
 <ng-template #create>
   <br/>
   <form [formGroup]="vagon_form" (ngSubmit)="submit()">
-  <mat-card class="vagon-card">
+  <mat-card class="vagon-card mat-elevation-z8">
     <mat-card-header>
       <div mat-card-avatar class="header-image"></div>
       <mat-card-title>Добавление паспорта</mat-card-title>
@@ -226,7 +248,7 @@
             <mat-label>Дата последнего ремонта</mat-label>
             <input matInput [matDatepicker]="lastRepairDateControl" [min]="minDate" [max]="maxDate" [formControl]="lastRepairDate" required>
             <mat-datepicker-toggle matSuffix [for]="lastRepairDateControl"></mat-datepicker-toggle>
-            <mat-datepicker #lastRepairDateControl></mat-datepicker>
+            <mat-datepicker #lastRepairDateControl ></mat-datepicker>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
@@ -260,8 +282,14 @@
     
     <mat-card-actions>
       <div class="mat-card-actions-div">
-          <button mat-stroked-button color="primary" [disabled]="vagon_form.invalid">Сохранить</button>
-          <button mat-stroked-button (click)="cancel()">Отмена</button>
+          <button mat-stroked-button color="primary" [disabled]="vagon_form.invalid">
+            <mat-icon color="primary">save</mat-icon>
+            <span>&nbsp;Сохранить</span>
+          </button>
+          <button mat-stroked-button (click)="cancel()">
+            <mat-icon color="primary">cancel</mat-icon>
+            <span>&nbsp;Отмена</span>
+          </button>
       </div>
     </mat-card-actions>
   

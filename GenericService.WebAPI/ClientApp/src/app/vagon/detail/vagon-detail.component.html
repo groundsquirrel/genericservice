@@ -1,6 +1,6 @@
 <p><a routerLink="/vagon" class="nav-link">К списку вагонов</a></p>
 
-<mat-card class="product-card" *ngIf="loaded">
+<mat-card class="product-card mat-elevation-z8" *ngIf="loaded">
     <mat-card-header>
       <div mat-card-avatar class="header-image"></div>
       <mat-card-title>Вагон {{vagon.number}}</mat-card-title>
@@ -8,7 +8,7 @@
     </mat-card-header>
     <img mat-card-image src="{{vagon.imgUrl}}" alt="Photo of a {{vagon.company}} {{vagon.name}}">
     <mat-card-content>
-      <mat-grid-list cols="2" rowHeight="35px" gutterSize="10px">
+      <mat-grid-list cols="2" rowHeight="40px" gutterSize="10px">
         <mat-grid-tile>
           Номер:
       </mat-grid-tile>
@@ -139,7 +139,10 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="mat-card-actions-div">
-          <a mat-stroked-button routerLink="/vagon"><< Назад</a>
+          <a mat-stroked-button routerLink="/vagon">
+            <mat-icon>arrow_back</mat-icon>
+            <span>&nbsp;Назад</span>
+          </a>
       </div>
     </mat-card-actions>
    

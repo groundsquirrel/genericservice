@@ -44,7 +44,7 @@ export class VagonComponent implements OnInit {
   vagon: Vagon = new Vagon();   // изменяемый объект
   tableMode: boolean = true;          // табличный режим
 
-  displayedColumns: string[] = ['number', 'model', 'countryOwner', 'vagonType', 'isClosedFloor', 'rentalEndDate', 'capacity', 'tare', 'ownType', 'axlesCount', 'volume', 'createdAt'];
+  displayedColumns: string[] = ['number', 'model', 'countryOwner', 'vagonType', 'isClosedFloor', 'rentalEndDate', 'capacity', 'tare', 'ownType', 'axlesCount', 'volume', 'createdAt', 'actions'];
   dataSource: MatTableDataSource<Vagon>; // массив товаров
 
   constructor(private dataService: DataService, fb: FormBuilder) {
