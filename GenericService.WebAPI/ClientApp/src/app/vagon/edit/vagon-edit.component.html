@@ -1,0 +1,168 @@
+<p><a routerLink="/vagon" class="nav-link">К списку вагонов</a></p>
+
+<form [formGroup]="vagon_form" (ngSubmit)="submit()">
+  <mat-card class="product-card mat-elevation-z8" *ngIf="loaded">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>Вагон {{vagon.number}}</mat-card-title>
+      <mat-card-subtitle>{{vagon.model}} {{vagon.vagonTypeName}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="60px" gutterSize="15px">
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Номер</mat-label>
+            <input type="text" matInput [formControl]="number" required>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Модель</mat-label>
+            <input type="text" matInput [formControl]="model" required>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Принадлежность</mat-label>
+            <input type="text" [formControl]="countryOwner" matInput required>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Дата окончания аренды</mat-label>
+            <input matInput [matDatepicker]="rentalEndDateControl" [min]="minDate" [max]="maxDate" [formControl]="rentalEndDate" required>
+            <mat-datepicker-toggle matSuffix [for]="rentalEndDateControl"></mat-datepicker-toggle>
+            <mat-datepicker #rentalEndDateControl></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-checkbox class="checkbox-margin" color="primary" [formControl]="isClosedFloor">Глуходонный</mat-checkbox>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Грузоподъемность</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="capacity" min="0" required>
+            <span matSuffix>&nbsp; т</span>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Тара</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="tare" min="0" required>
+            <span matSuffix>&nbsp;т</span>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Тип собственности</mat-label>
+            <mat-select [formControl]="ownType" name="ownType" required>
+              <mat-option *ngFor="let ownType of vagon.ownTypeList" [value]="ownType.value">
+                {{ownType.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Кол-во осей</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="axlesCount" min="0" required>
+            <span matSuffix>&nbsp;шт</span>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Объем кузова</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="volume" min="0" required>
+            <span matSuffix>&nbsp;м3</span>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Длина</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="length" min="0" required>
+            <span matSuffix>&nbsp;м</span>
+          </mat-form-field>    
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Собственник</mat-label>
+            <input type="text" matInput [formControl]="ownerName" required>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Арендатор</mat-label>
+            <input type="text" matInput [formControl]="tenantName">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Оператор</mat-label>
+            <input type="text" matInput [formControl]="operatorName">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Пробег</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="mileage" min="0" required>
+            <span matSuffix>&nbsp;км</span>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Год выпуска</mat-label>
+            <input matInput type="number" placeholder="Введите значение" [formControl]="productionYear" min="0" required>
+            <span matSuffix>&nbsp;год</span>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Дата последнего ремонта</mat-label>
+            <input matInput [matDatepicker]="lastRepairDateControl" [min]="minDate" [max]="maxDate" [formControl]="lastRepairDate" required>
+            <mat-datepicker-toggle matSuffix [for]="lastRepairDateControl"></mat-datepicker-toggle>
+            <mat-datepicker #lastRepairDateControl ></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Дата следующего ремонта</mat-label>
+            <input matInput [matDatepicker]="nextRepairDateControl" [min]="minDate" [max]="maxDate" [formControl]="nextRepairDate" required>
+            <mat-datepicker-toggle matSuffix [for]="nextRepairDateControl"></mat-datepicker-toggle>
+            <mat-datepicker #nextRepairDateControl></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Ссылка на изображение</mat-label>
+            <input type="text" matInput [formControl]="imgUrl">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <div class="vagon-type">
+        <label id="vagon-type-label">Тип вагона:</label>
+        <mat-radio-group
+          aria-labelledby="vagon-type-label"
+          class="vagon-type-radio-group"
+          [formControl]="vagonType">
+          <mat-radio-button class="vagon-type-radio-button" *ngFor="let vagonType of vagon.vagonTypeList" [value]="vagonType.value">
+            {{vagonType.viewValue}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="mat-card-actions-div">
+        <button mat-stroked-button color="primary" [disabled]="vagon_form.invalid">
+          <mat-icon color="primary">save</mat-icon>
+          <span>&nbsp;Сохранить</span>
+        </button>
+        <button mat-stroked-button (click)="cancel()">
+          <mat-icon color="primary">cancel</mat-icon>
+          <span>&nbsp;Отмена</span>
+        </button>
+      </div>
+    </mat-card-actions>
+   
+  </mat-card>  
+</form>

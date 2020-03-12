@@ -47,8 +47,8 @@ export class VagonComponent implements OnInit {
   displayedColumns: string[] = ['number', 'model', 'countryOwner', 'vagonType', 'isClosedFloor', 'rentalEndDate', 'capacity', 'tare', 'ownType', 'axlesCount', 'volume', 'createdAt', 'actions'];
   dataSource: MatTableDataSource<Vagon>; // массив товаров
 
-  constructor(private dataService: DataService, fb: FormBuilder) {
-    this.buildForm(fb);
+  constructor(private dataService: DataService) {
+    this.buildForm();
     //this.minDate = this.addDays(new Date(), -7);
     //this.maxDate = this.addDays(new Date(), 7);
    }
@@ -56,8 +56,8 @@ export class VagonComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  private buildForm(fb: FormBuilder) {
-    this.vagon_form = fb.group({
+  private buildForm() {
+    this.vagon_form = new FormBuilder().group({
       number: this.number,
       model: this.model,
       countryOwner: this.countryOwner,
