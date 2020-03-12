@@ -6,7 +6,7 @@
       <mat-card-title>Вагон {{vagon.number}}</mat-card-title>
       <mat-card-subtitle>{{vagon.model}} {{vagon.vagonTypeName}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{vagon.imgUrl}}" alt="Photo of a {{vagon.company}} {{vagon.name}}">
+    <img mat-card-image src="{{vagon.imgUrl}}" alt="Photo of a {{vagon.model}} {{vagon.vagonTypeName}}">
     <mat-card-content>
       <mat-grid-list cols="2" rowHeight="40px" gutterSize="10px">
         <mat-grid-tile>
@@ -140,7 +140,7 @@
     <mat-card-actions>
       <div class="mat-card-actions-div">
           <a mat-stroked-button routerLink="/vagon">
-            <mat-icon>arrow_back</mat-icon>
+            <mat-icon color="primary">arrow_back</mat-icon>
             <span>&nbsp;Назад</span>
           </a>
       </div>
