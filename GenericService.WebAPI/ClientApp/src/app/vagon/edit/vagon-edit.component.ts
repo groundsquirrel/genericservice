@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { Vagon as Vagon } from '../vagon';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -18,6 +18,7 @@ export class VagonEditComponent implements OnInit {
 
     vagon_form: FormGroup;
   
+    
     number = new FormControl(null, Validators.required);
     model = new FormControl(null, Validators.required);
     countryOwner = new FormControl(null, Validators.required);
@@ -42,7 +43,9 @@ export class VagonEditComponent implements OnInit {
     minDate: Date;
     maxDate: Date;
 
-    constructor(private dataService: DataService, activeRoute: ActivatedRoute) {
+    
+
+    constructor(private dataService: DataService, private activeRoute: ActivatedRoute, private router: Router) {
         this.id = activeRoute.snapshot.params["id"];
         this.buildForm();
     }
@@ -52,6 +55,26 @@ export class VagonEditComponent implements OnInit {
             this.dataService.getVagon(this.id)
                 .subscribe((data: Vagon) => { 
                     this.vagon = Vagon.fromVagon(data); 
+                    this.number.setValue(this.vagon.number);
+                    this.model.setValue(this.vagon.model);
+                    this.countryOwner.setValue(this.vagon.countryOwner);
+                    this.vagonType.setValue(this.vagon.vagonType);
+                    this.rentalEndDate.setValue(this.vagon.rentalEndDate);
+                    this.isClosedFloor.setValue(this.vagon.isClosedFloor);
+                    this.capacity.setValue(this.vagon.capacity);
+                    this.tare.setValue(this.vagon.tare);
+                    this.ownType.setValue(this.vagon.ownType);
+                    this.axlesCount.setValue(this.vagon.axlesCount);
+                    this.volume.setValue(this.vagon.volume);
+                    this.length.setValue(this.vagon.length);
+                    this.ownerName.setValue(this.vagon.ownerName);
+                    this.tenantName.setValue(this.vagon.tenantName);
+                    this.operatorName.setValue(this.vagon.operatorName);
+                    this.mileage.setValue(this.vagon.mileage);
+                    this.productionYear.setValue(this.vagon.productionYear);
+                    this.lastRepairDate.setValue(this.vagon.lastRepairDate);
+                    this.nextRepairDate.setValue(this.vagon.nextRepairDate);
+                    this.imgUrl.setValue(this.vagon.imgUrl);
                     this.loaded = true; 
                 });
     }
@@ -83,15 +106,17 @@ export class VagonEditComponent implements OnInit {
 
     // сохранение данных
     save() {
-        if (this.vagon_form.value._id == null) {
+        console.debug(this.vagon);
+        if (this.vagon_form.value._id === null) {
             this.dataService.createVagon(this.vagon_form.value)
                 .subscribe((data: HttpResponse<Vagon>) => {
                 console.debug(data);
                 
                 });
         } else {
-            this.dataService.updateVagon(this.vagon);
-                //.subscribe(() => this.loadVagons());
+            //console.debug(this.vagon_form.value);
+            this.dataService.updateVagon(this.vagon_form.value)
+                .subscribe(() => this.router.navigate(['/vagon']));
         }
         //this.cancel();
     }
@@ -108,4 +133,10 @@ export class VagonEditComponent implements OnInit {
         // this.loadVagons();
         
     }
+
+    submit() {
+        console.log(this.vagon_form);
+        if (this.vagon_form.status == 'VALID')
+          this.save();
+      }
 }

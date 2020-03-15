@@ -1,5 +1,55 @@
-.product-card {
-    max-width: 600px;
+  .header-image {
+    background-image: url('https://previews.123rf.com/images/rastudio/rastudio1601/rastudio160103582/51362288-cargo-wagon-line-icon-for-web-mobile-and-infographics-vector-grey-thin-line-icon-in-the-circle-isola.jpg');
+    background-size: cover;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .vagon-card {
+    max-width: 900px;
+  }
+
+  .right-align {
+    text-align: right;
+  }
+
+  input.price-right-align::-webkit-outer-spin-button,
+  input.price-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.price-right-align {
+    -moz-appearance: textfield;
+  }
+
+  .vagon-type-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 5px;
+  }
+  
+  .vagon-type-radio-button {
+    margin: 0 10px;
+  }
+
+  .vagon-type {
+    margin-top: 15px;
+    margin-left: 50px;
+  }
+  
+  .checkbox-margin {
+    margin: 0 12px;
+  }
+
+  .mat-card-actions-div {
+    margin: 0px 0px 15px 8px;
+  } 
+
+  .mat-card-content {
+    margin-bottom: 0px;
   }
 
   .header-image {

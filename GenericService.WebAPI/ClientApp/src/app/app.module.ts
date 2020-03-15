@@ -27,6 +27,7 @@ import { VagonComponent } from './vagon/vagon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getRussianPaginatorIntl } from './russian-paginator-intl';
 import { VagonDetailComponent } from './vagon/detail/vagon-detail.component';
+import { VagonEditComponent } from './vagon/edit/vagon-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { VagonDetailComponent } from './vagon/detail/vagon-detail.component';
     ProductComponent,
     TableSortingExample,
     VagonComponent,
-    VagonDetailComponent
+    VagonDetailComponent,
+    VagonEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -71,6 +73,7 @@ import { VagonDetailComponent } from './vagon/detail/vagon-detail.component';
       { path: 'table-sorting-example', component: TableSortingExample },
       { path: 'vagon', component: VagonComponent },
       { path: 'vagon/:id', component: VagonDetailComponent },
+      { path: 'vagon/edit/:id', component: VagonEditComponent },
     ]),
     BrowserAnimationsModule
   ],

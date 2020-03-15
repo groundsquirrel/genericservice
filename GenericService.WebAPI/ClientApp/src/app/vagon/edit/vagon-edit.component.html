@@ -1,7 +1,7 @@
 <p><a routerLink="/vagon" class="nav-link">К списку вагонов</a></p>
 
 <form [formGroup]="vagon_form" (ngSubmit)="submit()">
-  <mat-card class="product-card mat-elevation-z8" *ngIf="loaded">
+  <mat-card class="vagon-card mat-elevation-z8" *ngIf="loaded">
     <mat-card-header>
       <div mat-card-avatar class="header-image"></div>
       <mat-card-title>Вагон {{vagon.number}}</mat-card-title>
@@ -157,7 +157,7 @@
           <mat-icon color="primary">save</mat-icon>
           <span>&nbsp;Сохранить</span>
         </button>
-        <button mat-stroked-button (click)="cancel()">
+        <button mat-stroked-button routerLink="/vagon">
           <mat-icon color="primary">cancel</mat-icon>
           <span>&nbsp;Отмена</span>
         </button>

@@ -104,7 +104,7 @@
             <mat-icon color="primary">more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item disabled>
+            <button mat-menu-item [routerLink]="['edit', element._id.$oid]">
               <mat-icon color="primary">edit</mat-icon>
               <span>&nbsp;Изменить</span>
             </button>
