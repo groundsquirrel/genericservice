@@ -11,14 +11,15 @@ import { HttpResponse } from '@angular/common/http/http';
     providers: [DataService]
 })
 export class VagonEditComponent implements OnInit {
- 
+    color: string = 'primary';
+
     id: string;
     vagon: Vagon;
     loaded: boolean = false;
 
     vagon_form: FormGroup;
   
-    
+    _id = new FormControl();
     number = new FormControl(null, Validators.required);
     model = new FormControl(null, Validators.required);
     countryOwner = new FormControl(null, Validators.required);
@@ -39,13 +40,13 @@ export class VagonEditComponent implements OnInit {
     lastRepairDate = new FormControl(new Date(), Validators.required);
     nextRepairDate = new FormControl(new Date(), Validators.required);
     imgUrl = new FormControl();
+    createdAt = new FormControl(new Date(), Validators.required);
+    updatedAt = new FormControl(new Date(), Validators.required);
 
     minDate: Date;
     maxDate: Date;
 
-    
-
-    constructor(private dataService: DataService, private activeRoute: ActivatedRoute, private router: Router) {
+    constructor(private dataService: DataService, activeRoute: ActivatedRoute, private router: Router) {
         this.id = activeRoute.snapshot.params["id"];
         this.buildForm();
     }
@@ -55,6 +56,7 @@ export class VagonEditComponent implements OnInit {
             this.dataService.getVagon(this.id)
                 .subscribe((data: Vagon) => { 
                     this.vagon = Vagon.fromVagon(data); 
+                    this._id.setValue(this.vagon._id);
                     this.number.setValue(this.vagon.number);
                     this.model.setValue(this.vagon.model);
                     this.countryOwner.setValue(this.vagon.countryOwner);
@@ -75,12 +77,15 @@ export class VagonEditComponent implements OnInit {
                     this.lastRepairDate.setValue(this.vagon.lastRepairDate);
                     this.nextRepairDate.setValue(this.vagon.nextRepairDate);
                     this.imgUrl.setValue(this.vagon.imgUrl);
+                    this.createdAt.setValue(this.vagon.createdAt);
+                    this.updatedAt.setValue(this.vagon.updatedAt);
                     this.loaded = true; 
                 });
     }
 
     private buildForm() {
         this.vagon_form = new FormBuilder().group({
+          _id: this._id,
           number: this.number,
           model: this.model,
           countryOwner: this.countryOwner,
@@ -100,43 +105,27 @@ export class VagonEditComponent implements OnInit {
           productionYear: this.productionYear,
           lastRepairDate: this.lastRepairDate,
           nextRepairDate: this.nextRepairDate,
-          imgUrl: this.imgUrl
+          imgUrl: this.imgUrl,
+          createdAt: this.createdAt,
+          updatedAt: this.updatedAt
         });
     }
 
     // сохранение данных
     save() {
-        console.debug(this.vagon);
         if (this.vagon_form.value._id === null) {
             this.dataService.createVagon(this.vagon_form.value)
                 .subscribe((data: HttpResponse<Vagon>) => {
-                console.debug(data);
                 
                 });
         } else {
-            //console.debug(this.vagon_form.value);
             this.dataService.updateVagon(this.vagon_form.value)
                 .subscribe(() => this.router.navigate(['/vagon']));
         }
-        //this.cancel();
-    }
-
-    editVagon(p: Vagon) {
-        this.vagon = p;
-    }
-
-    cancel() {
-        this.vagon = new Vagon();
-        this.vagon_form.reset();
-        // this.tableMode = true;
-        // this.sort = this.dataSource.sort;
-        // this.loadVagons();
-        
     }
 
     submit() {
-        console.log(this.vagon_form);
-        if (this.vagon_form.status == 'VALID')
+        if (this.vagon_form.status === 'VALID')
           this.save();
       }
 }

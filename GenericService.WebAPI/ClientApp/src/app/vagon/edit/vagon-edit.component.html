@@ -36,7 +36,7 @@
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
-          <mat-checkbox class="checkbox-margin" color="primary" [formControl]="isClosedFloor">Глуходонный</mat-checkbox>
+          <mat-checkbox class="checkbox-margin" color="{{color}}" [formControl]="isClosedFloor">Глуходонный</mat-checkbox>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill">
@@ -153,12 +153,12 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="mat-card-actions-div">
-        <button mat-stroked-button color="primary" [disabled]="vagon_form.invalid">
-          <mat-icon color="primary">save</mat-icon>
+        <button mat-stroked-button color="{{color}}" [disabled]="vagon_form.invalid">
+          <mat-icon color="{{color}}">save</mat-icon>
           <span>&nbsp;Сохранить</span>
         </button>
         <button mat-stroked-button routerLink="/vagon">
-          <mat-icon color="primary">cancel</mat-icon>
+          <mat-icon color="{{color}}">cancel</mat-icon>
           <span>&nbsp;Отмена</span>
         </button>
       </div>

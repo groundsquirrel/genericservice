@@ -144,6 +144,10 @@ export class Vagon {
     public get createdAtText(): string {
         return this.getFormatDateTime(this.createdAt);
     }
+
+    public get updatedAtText(): string {
+        return this.getFormatDateTime(this.updatedAt);
+    }
 }
 
 export class ObjectId {

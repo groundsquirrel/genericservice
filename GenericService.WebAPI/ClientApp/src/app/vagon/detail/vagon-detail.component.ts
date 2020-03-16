@@ -9,7 +9,8 @@ import { Vagon as Vagon } from '../vagon';
     providers: [DataService]
 })
 export class VagonDetailComponent implements OnInit {
- 
+    color: string = 'primary';
+
     id: string;
     vagon: Vagon;
     loaded: boolean = false;

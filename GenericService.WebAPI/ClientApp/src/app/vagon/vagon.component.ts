@@ -15,6 +15,8 @@ import { HttpResponse } from '@angular/common/http';
   providers: [DataService]
 })
 export class VagonComponent implements OnInit {
+  color: string = 'primary';
+
   vagon_form: FormGroup;
   
   number = new FormControl(null, Validators.required);
@@ -44,7 +46,7 @@ export class VagonComponent implements OnInit {
   vagon: Vagon = new Vagon();   // изменяемый объект
   tableMode: boolean = true;          // табличный режим
 
-  displayedColumns: string[] = ['number', 'model', 'countryOwner', 'vagonType', 'isClosedFloor', 'rentalEndDate', 'capacity', 'tare', 'ownType', 'axlesCount', 'volume', 'createdAt', 'actions'];
+  displayedColumns: string[] = ['number', 'model', 'countryOwner', 'vagonType', 'isClosedFloor', 'rentalEndDate', 'capacity', 'tare', 'ownType', 'axlesCount', 'volume', 'createdAt', 'updatedAt', 'actions'];
   dataSource: MatTableDataSource<Vagon>; // массив товаров
 
   constructor(private dataService: DataService) {
