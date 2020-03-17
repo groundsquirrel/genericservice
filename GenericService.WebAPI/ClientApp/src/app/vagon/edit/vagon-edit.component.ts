@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
-import { Vagon as Vagon } from '../vagon';
+import { Vagon } from '../vagon';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http/http';
  
@@ -26,17 +26,17 @@ export class VagonEditComponent implements OnInit {
     vagonType = new FormControl(null, [Validators.required]);
     rentalEndDate = new FormControl(new Date(), Validators.required);
     isClosedFloor = new FormControl();
-    capacity = new FormControl(0, [Validators.required, Validators.min(0)]);
-    tare = new FormControl(0, [Validators.required, Validators.min(0)]);
+    capacity = new FormControl(null, [Validators.required, Validators.min(0)]);
+    tare = new FormControl(null, [Validators.required, Validators.min(0)]);
     ownType = new FormControl(null, [Validators.required]);
-    axlesCount = new FormControl(0, [Validators.required, Validators.min(0)]);
-    volume = new FormControl(0, [Validators.required, Validators.min(0)]);
-    length = new FormControl(0, [Validators.required, Validators.min(0)]);
+    axlesCount = new FormControl(null, [Validators.required, Validators.min(0)]);
+    volume = new FormControl(null, [Validators.required, Validators.min(0)]);
+    length = new FormControl(null, [Validators.required, Validators.min(0)]);
     ownerName = new FormControl(null, Validators.required);
     tenantName = new FormControl();
     operatorName = new FormControl();
-    mileage = new FormControl(0, [Validators.required, Validators.min(0)]);
-    productionYear = new FormControl(0, [Validators.required, Validators.min(0)]);
+    mileage = new FormControl(null, [Validators.required, Validators.min(0)]);
+    productionYear = new FormControl(null, [Validators.required, Validators.min(0)]);
     lastRepairDate = new FormControl(new Date(), Validators.required);
     nextRepairDate = new FormControl(new Date(), Validators.required);
     imgUrl = new FormControl();
@@ -52,7 +52,7 @@ export class VagonEditComponent implements OnInit {
     }
  
     ngOnInit() {
-        if (this.id)
+        if (this.id !== 'null')
             this.dataService.getVagon(this.id)
                 .subscribe((data: Vagon) => { 
                     this.vagon = Vagon.fromVagon(data); 
@@ -79,8 +79,13 @@ export class VagonEditComponent implements OnInit {
                     this.imgUrl.setValue(this.vagon.imgUrl);
                     this.createdAt.setValue(this.vagon.createdAt);
                     this.updatedAt.setValue(this.vagon.updatedAt);
-                    this.loaded = true; 
+
+                    this.loaded = true;
                 });
+        else {
+            this.vagon = new Vagon();
+            this.loaded = true;
+        }
     }
 
     private buildForm() {
@@ -116,7 +121,7 @@ export class VagonEditComponent implements OnInit {
         if (this.vagon_form.value._id === null) {
             this.dataService.createVagon(this.vagon_form.value)
                 .subscribe((data: HttpResponse<Vagon>) => {
-                
+                    this.router.navigate(['/vagon']);
                 });
         } else {
             this.dataService.updateVagon(this.vagon_form.value)

@@ -1,7 +1,11 @@
 <p><a routerLink="/vagon" class="nav-link">К списку вагонов</a></p>
 
+<ng-template #loading>
+  <div>Загрузка...</div>
+</ng-template>
+
 <form [formGroup]="vagon_form" (ngSubmit)="submit()">
-  <mat-card class="vagon-card mat-elevation-z8" *ngIf="loaded">
+  <mat-card class="vagon-card mat-elevation-z8" *ngIf="loaded; else loading">
     <mat-card-header>
       <div mat-card-avatar class="header-image"></div>
       <mat-card-title>Вагон {{vagon.number}}</mat-card-title>
