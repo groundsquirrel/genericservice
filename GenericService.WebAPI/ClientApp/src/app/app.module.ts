@@ -17,7 +17,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
+import { TaskComponent } from './task/task.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FetchDataDetailComponent } from './fetch-data/detail/fetch-data-detail.component';
@@ -33,7 +33,7 @@ import { VagonEditComponent } from './vagon/edit/vagon-edit.component';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
+    TaskComponent,
     CounterComponent,
     FetchDataComponent,
     FetchDataDetailComponent,
@@ -65,7 +65,7 @@ import { VagonEditComponent } from './vagon/edit/vagon-edit.component';
     MatGridListModule,
     MatMenuModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: TaskComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'fetch-data/:id', component: FetchDataDetailComponent },

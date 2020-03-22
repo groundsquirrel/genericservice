@@ -141,7 +141,7 @@ export class VagonComponent implements OnInit {
 
   submit() {
     console.log(this.vagon_form);
-    if (this.vagon_form.status == 'VALID')
+    if (this.vagon_form.status === 'VALID')
       this.save();
   }
 

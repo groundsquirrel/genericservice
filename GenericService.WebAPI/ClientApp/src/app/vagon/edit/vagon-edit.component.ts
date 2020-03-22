@@ -52,7 +52,7 @@ export class VagonEditComponent implements OnInit {
     }
  
     ngOnInit() {
-        if (this.id !== 'null')
+        if (this.id !== 'new')
             this.dataService.getVagon(this.id)
                 .subscribe((data: Vagon) => { 
                     this.vagon = Vagon.fromVagon(data); 

@@ -9,7 +9,7 @@
     <mat-card-header>
       <div mat-card-avatar class="header-image"></div>
       <mat-card-title>Вагон {{vagon.number}}</mat-card-title>
-      <mat-card-subtitle>{{vagon.model}} {{vagon.vagonTypeName}}</mat-card-subtitle>
+      <mat-card-subtitle><span *ngIf="vagon.number != null; else elseBlock">{{vagon.model}} {{vagon.vagonTypeName}}</span></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <mat-grid-list cols="2" rowHeight="60px" gutterSize="15px">
@@ -170,3 +170,5 @@
    
   </mat-card>  
 </form>
+
+<ng-template #elseBlock>Введите характеристики вагона</ng-template>
