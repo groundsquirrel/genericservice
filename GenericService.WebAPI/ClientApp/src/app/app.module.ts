@@ -18,8 +18,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { TaskComponent } from './task/task.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { FetchDataDetailComponent } from './fetch-data/detail/fetch-data-detail.component';
 import { VagonComponent } from './vagon/vagon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getRussianPaginatorIntl } from './russian-paginator-intl';
@@ -31,8 +29,6 @@ import { VagonEditComponent } from './vagon/edit/vagon-edit.component';
     AppComponent,
     NavMenuComponent,
     TaskComponent,
-    FetchDataComponent,
-    FetchDataDetailComponent,
     VagonComponent,
     VagonDetailComponent,
     VagonEditComponent
@@ -60,8 +56,6 @@ import { VagonEditComponent } from './vagon/edit/vagon-edit.component';
     MatMenuModule,
     RouterModule.forRoot([
       { path: '', component: TaskComponent, pathMatch: 'full' },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'fetch-data/:id', component: FetchDataDetailComponent },
       { path: 'vagon', component: VagonComponent },
       { path: 'vagon/:id', component: VagonDetailComponent },
       { path: 'vagon/edit/:id', component: VagonEditComponent },

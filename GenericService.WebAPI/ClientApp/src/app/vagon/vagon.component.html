@@ -7,7 +7,7 @@
   </button>
 </div>
 
-<div *ngIf="tableMode; else create">
+<div>
   <mat-form-field color="{{color}}">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фильтр">
   </mat-form-field>
