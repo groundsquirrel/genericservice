@@ -20,3 +20,7 @@ html {
 .navbar {
   background-color:lightblue;
 }
+
+.link-active {
+  font-weight: 500;
+}

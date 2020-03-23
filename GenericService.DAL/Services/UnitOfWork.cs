@@ -21,7 +21,7 @@ namespace GenericService.DAL.Services
             get
             {
                 if (bsonDocumentRepository == null)
-                    bsonDocumentRepository = new BsonDocumentRepository(_context, "vagons");
+                    bsonDocumentRepository = new BsonDocumentRepository(_context, "docs");
                 return bsonDocumentRepository;
             }
         }

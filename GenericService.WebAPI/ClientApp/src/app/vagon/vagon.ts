@@ -94,9 +94,8 @@ export class Vagon {
     ownTypeList: simpleObj[] = [
         {value: 0, viewValue: 'Другое'},
         {value: 1, viewValue: 'Собственник'},
-        {value: 2, viewValue: 'Владелец'},
-        {value: 3, viewValue: 'Арендатор'},
-        {value: 4, viewValue: 'Оператор'}
+        {value: 2, viewValue: 'Арендатор'},
+        {value: 3, viewValue: 'Оператор'}
     ];
 
     getFirstName(arr: simpleObj[], i: number): string {

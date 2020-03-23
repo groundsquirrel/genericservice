@@ -29,8 +29,11 @@ namespace GenericService.WebAPI
             });
 
             services
-            .AddTransient<IMongoDbContext>(s => new MongoDbContext("mongodb://localhost:27017", "test"))
-               .AddTransient<IUnitOfWork, UnitOfWork>();               
+            .AddTransient<IMongoDbContext>(s => new MongoDbContext(
+                    Configuration["ConnectionStrings:MongoDBConnection"], 
+                    Configuration["ConnectionStrings:MongoDBName"])
+                )
+            .AddTransient<IUnitOfWork, UnitOfWork>();               
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
