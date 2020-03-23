@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Vagon as Vagon, ObjectId } from './vagon';
+import { Vagon, ObjectId } from './vagon';
  
 @Injectable()
 export class DataService {

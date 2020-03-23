@@ -1,4 +1,3 @@
-using System;
 using MongoDB.Driver;
 
 namespace GenericService.DAL.Services.Abstractions

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
-import { Vagon as Vagon } from '../vagon';
+import { Vagon } from '../vagon';
  
 @Component({
     templateUrl: './vagon-detail.component.html',

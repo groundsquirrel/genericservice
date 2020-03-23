@@ -41,7 +41,6 @@
       <ng-container matColumnDef="isClosedFloor">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Глухо-<br/>донный </th>
         <td mat-cell *matCellDef="let element">
-          <!-- <mat-checkbox class="checkbox-margin" color="primary" [formControl]="isClosedFloor">Глуходонный</mat-checkbox> -->
           <mat-checkbox
             class="checkbox-margin"
             [ngModel]="element.isClosedFloor"

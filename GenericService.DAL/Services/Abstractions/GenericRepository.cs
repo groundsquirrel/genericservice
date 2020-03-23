@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace GenericService.DAL.Services.Abstractions

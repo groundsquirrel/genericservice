@@ -1,13 +1,10 @@
 import { Component, ViewChild,  OnInit } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
-import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 
 import { DataService } from './data.service';
 import { Vagon as Vagon } from './vagon';
 
-import { HttpResponse } from '@angular/common/http';
- 
 @Component({
   selector: 'app-vagon',
   styleUrls: ['vagon.component.css'],
@@ -56,10 +53,5 @@ export class VagonComponent implements OnInit {
   delete(p: Vagon) {
       this.dataService.deleteVagon(p._id)
           .subscribe(() => this.loadVagons());
-  }
- 
-  addDays(date: Date, days: number): Date {
-    date.setDate(date.getDate() + days);
-    return date;
   }
 }
