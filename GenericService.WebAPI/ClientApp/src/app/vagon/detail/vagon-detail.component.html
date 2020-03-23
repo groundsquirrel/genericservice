@@ -1,0 +1,150 @@
+<p><a routerLink="/vagon" class="nav-link">К списку вагонов</a></p>
+
+<mat-card class="product-card mat-elevation-z8" *ngIf="loaded">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>Вагон {{vagon.number}}</mat-card-title>
+      <mat-card-subtitle>{{vagon.model}} {{vagon.vagonTypeName}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{vagon.imgUrl}}"> 
+    <!-- alt="Photo of a {{vagon.model}} {{vagon.vagonTypeName}}"> -->
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="40px" gutterSize="10px">
+        <mat-grid-tile>
+          Номер:
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{vagon.number}}
+      </mat-grid-tile>
+        <mat-grid-tile>
+            Модель:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.model}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Принадлежность:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.countryOwner}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Тип вагона:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.vagonTypeName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Глуходонный:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-checkbox
+                class="checkbox-margin"
+                [ngModel]="vagon.isClosedFloor"
+                [disabled]="true">
+              </mat-checkbox>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Дата окончания аренды:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.rentalEndDateText}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Грузоподъемность (т):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.capacity}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Тара (т):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.tare}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Тип собственности:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.ownTypeName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Кол-во осей:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.axlesCount}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Объем кузова (м3):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.volume}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Длина (м):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.length}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Собственник:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.ownerName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Арендатор:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.tenantName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Оператор:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.operatorName}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Пробег (км):
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.mileage}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Год выпуска:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.productionYear}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Дата последнего ремонта:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.lastRepairDateText}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Дата следующего ремонта:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.nextRepairDateText}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          Дата создания:
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{vagon.createdAtText}}
+        </mat-grid-tile>
+        
+      </mat-grid-list>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="mat-card-actions-div">
+          <button mat-stroked-button routerLink="/vagon">
+            <mat-icon color="{{color}}">arrow_back</mat-icon>
+            <span>&nbsp;Назад</span>
+          </button>
+      </div>
+    </mat-card-actions>
+   
+</mat-card>  

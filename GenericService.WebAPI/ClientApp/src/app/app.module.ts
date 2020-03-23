@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { MatInputModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSortModule, MatPaginatorModule, MatIconModule, MatCardModule, MatPaginatorIntl } from '@angular/material';
+import { MatInputModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSortModule, MatPaginatorModule, MatIconModule, MatCardModule, MatPaginatorIntl, MatMenuModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -17,25 +17,31 @@ import {MatGridListModule} from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
+import { TaskComponent } from './task/task.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FetchDataDetailComponent } from './fetch-data/detail/fetch-data-detail.component';
 import { ProductComponent } from './product/product.component';
 import { TableSortingExample } from './table-sorting-example/table-sorting-example';
+import { VagonComponent } from './vagon/vagon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getRussianPaginatorIntl } from './russian-paginator-intl';
+import { VagonDetailComponent } from './vagon/detail/vagon-detail.component';
+import { VagonEditComponent } from './vagon/edit/vagon-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
+    TaskComponent,
     CounterComponent,
     FetchDataComponent,
     FetchDataDetailComponent,
     ProductComponent,
-    TableSortingExample
+    TableSortingExample,
+    VagonComponent,
+    VagonDetailComponent,
+    VagonEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -57,13 +63,17 @@ import { getRussianPaginatorIntl } from './russian-paginator-intl';
     MatCardModule,
     MatListModule,
     MatGridListModule,
+    MatMenuModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: TaskComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'fetch-data/:id', component: FetchDataDetailComponent },
       { path: 'product', component: ProductComponent },
       { path: 'table-sorting-example', component: TableSortingExample },
+      { path: 'vagon', component: VagonComponent },
+      { path: 'vagon/:id', component: VagonDetailComponent },
+      { path: 'vagon/edit/:id', component: VagonEditComponent },
     ]),
     BrowserAnimationsModule
   ],
